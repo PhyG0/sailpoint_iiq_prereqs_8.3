@@ -89,11 +89,31 @@ Write-Host ""
 Push-Location $IIQBinPath
 
 # Pipe commands to iiq console
-@"
+# Pipe commands to iiq console and capture output
+Write-Host "  Starting IIQ Console... This may take a moment." -ForegroundColor Cyan
+$cmd = @"
 import init.xml
 quit
-"@ | & cmd.exe /c "iiq.bat console"
+"@
+
+# Redirect stderr to stdout to capture everything
+$output = $cmd | & cmd.exe /c "iiq.bat console" 2>&1
+
+# Output the result
+$output | ForEach-Object { Write-Host "    $_" -ForegroundColor Gray }
+
+# Basic Check for Success (looking for "Imported" or lack of "Error" if simple)
+# But since output is variable, we mostly just show it.
+# However, we should warn if JAVA_HOME issues occurred.
+if ($output -match "The system cannot find the path specified" -or $output -match "Exception") {
+    Write-Host ""
+    Write-Host "  [FAIL] Errors detected during import." -ForegroundColor Red
+} else {
+    Write-Host ""
+    Write-Success "Import command execution completed."
+}
 
 Pop-Location
 
-Write-Success "Done."
+Write-Host ""
+Read-Host "  Press Enter to finish this step"
