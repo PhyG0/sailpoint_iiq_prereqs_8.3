@@ -76,8 +76,16 @@ if (-not (Test-Path $IIQBinPath)) {
 }
 
 # Set JAVA_HOME
+# Set JAVA_HOME and PATH logic
 $javaHome = [Environment]::GetEnvironmentVariable("JAVA_HOME", "Machine")
-if ($javaHome) { $env:JAVA_HOME = $javaHome }
+if ($javaHome) { 
+    $env:JAVA_HOME = $javaHome 
+    # CRITICAL FIX: Add Java bin to Path for this session
+    $env:Path = "$javaHome\bin;$env:Path"
+    Write-Host "  JAVA_HOME: $javaHome" -ForegroundColor Gray
+} else {
+    Write-Warning "JAVA_HOME environment variable is missing."
+}
 
 # Run import init-lcm.xml
 Write-Host "  Running: import init-lcm.xml" -ForegroundColor Cyan
@@ -102,7 +110,7 @@ $output = $cmd | & cmd.exe /c "iiq.bat console" 2>&1
 # Output the result
 $output | ForEach-Object { Write-Host "    $_" -ForegroundColor Gray }
 
-if ($output -match "The system cannot find the path specified" -or $output -match "Exception") {
+if ($output -match "The system cannot find the path specified" -or $output -match "Exception" -or $output -match "'java' is not recognized") {
     Write-Host ""
     Write-Host "  [FAIL] Errors detected during import." -ForegroundColor Red
 } else {
