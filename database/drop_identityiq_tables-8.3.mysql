@@ -1,0 +1,2295 @@
+--
+-- This script is a SAMPLE and can be modified as appropriate by the
+-- customer.  If the create sample was changed, then the corresponding
+-- changes will need to be made here, too.
+--
+
+USE identityiq;
+
+-- From the Quartz 2.2.1 Distribution
+DROP TABLE IF EXISTS QRTZ221_FIRED_TRIGGERS;
+DROP TABLE IF EXISTS QRTZ221_PAUSED_TRIGGER_GRPS;
+DROP TABLE IF EXISTS QRTZ221_SCHEDULER_STATE;
+DROP TABLE IF EXISTS QRTZ221_LOCKS;
+DROP TABLE IF EXISTS QRTZ221_SIMPLE_TRIGGERS;
+DROP TABLE IF EXISTS QRTZ221_CRON_TRIGGERS;
+DROP TABLE IF EXISTS QRTZ221_BLOB_TRIGGERS;
+DROP TABLE IF EXISTS QRTZ221_CALENDARS;
+DROP TABLE IF EXISTS QRTZ221_SIMPROP_TRIGGERS;
+DROP TABLE IF EXISTS QRTZ221_TRIGGERS;
+DROP TABLE IF EXISTS QRTZ221_JOB_DETAILS;
+
+-- End Quartz configuration
+
+    alter table identityiq.spt_account_group 
+       drop 
+       foreign key FK81npondqko61p2jbiurtiyjjh;
+
+    alter table identityiq.spt_account_group 
+       drop 
+       foreign key FK34oc5rgrwidh1xfn80u7hw6ty;
+
+    alter table identityiq.spt_account_group 
+       drop 
+       foreign key FKr2yvl55h4eygmk9g025u7knhg;
+
+    alter table identityiq.spt_account_group_inheritance 
+       drop 
+       foreign key FK37nc4s7oaae0og1ks6qawxw5v;
+
+    alter table identityiq.spt_account_group_inheritance 
+       drop 
+       foreign key FKmapn2o892qhdmaa1r4lemvgax;
+
+    alter table identityiq.spt_account_group_perms 
+       drop 
+       foreign key FKiapqdfk3kcuq5jv68yxi5x7tx;
+
+    alter table identityiq.spt_account_group_target_perms 
+       drop 
+       foreign key FK13f1jdxrqvk98rjhyw2nsywcj;
+
+    alter table identityiq.spt_activity_constraint 
+       drop 
+       foreign key FKh07lkkaqonsf23oaqaiiowgxa;
+
+    alter table identityiq.spt_activity_constraint 
+       drop 
+       foreign key FK84atg8et8jhm2q2xrbc8y3mmg;
+
+    alter table identityiq.spt_activity_constraint 
+       drop 
+       foreign key FK54edcjc3jxlcm0n4x49vwmqbr;
+
+    alter table identityiq.spt_activity_constraint 
+       drop 
+       foreign key FKi1i3q8kvh4ed7e734iwrmbkqp;
+
+    alter table identityiq.spt_activity_constraint 
+       drop 
+       foreign key FKe1iukekxihoxdeji16gk4540c;
+
+    alter table identityiq.spt_activity_data_source 
+       drop 
+       foreign key FK4nyoyf6fj2n0iqv4x6hy3p5a0;
+
+    alter table identityiq.spt_activity_data_source 
+       drop 
+       foreign key FK9xs1b8n9mbigik443n155ils7;
+
+    alter table identityiq.spt_activity_data_source 
+       drop 
+       foreign key FKa7oof6hhnyj73cgy991qj4159;
+
+    alter table identityiq.spt_activity_data_source 
+       drop 
+       foreign key FK4t11m9gcjjxe4uhtlkab3mkh4;
+
+    alter table identityiq.spt_activity_data_source 
+       drop 
+       foreign key FKqh1mk9ywu09wfephle51xm9j;
+
+    alter table identityiq.spt_activity_time_periods 
+       drop 
+       foreign key FKdf7oxva0h2xktfgb8ro54gd5;
+
+    alter table identityiq.spt_activity_time_periods 
+       drop 
+       foreign key FKbxg0qs6lvogays6vb2niyqgjk;
+
+    alter table identityiq.spt_alert 
+       drop 
+       foreign key FKjpmc8vdbv8mso3deakv8qi5dd;
+
+    alter table identityiq.spt_alert_action 
+       drop 
+       foreign key FK4kt6nnjdocmdkgcv3wgdfvfyg;
+
+    alter table identityiq.spt_alert_definition 
+       drop 
+       foreign key FKm2f36vhlf1u9vnf5w1rm21i0q;
+
+    alter table identityiq.spt_alert_definition 
+       drop 
+       foreign key FK7nrecpxk2mr7mwgli5tk5kiq9;
+
+    alter table identityiq.spt_app_dependencies 
+       drop 
+       foreign key FKg99wvor3c1wxfmvd1j1vekrk1;
+
+    alter table identityiq.spt_app_dependencies 
+       drop 
+       foreign key FKfimmxii9xcyjfmgd0489d2q61;
+
+    alter table identityiq.spt_application 
+       drop 
+       foreign key FKo50q3ykyumpddcaaokonvivah;
+
+    alter table identityiq.spt_application 
+       drop 
+       foreign key FKjrqhmrsoaxkmetjcd0y3vo09r;
+
+    alter table identityiq.spt_application 
+       drop 
+       foreign key FKr6orbi6gkpkds9hrhowsym3yy;
+
+    alter table identityiq.spt_application 
+       drop 
+       foreign key FKo2741mu93ute68xlirxg7ysja;
+
+    alter table identityiq.spt_application 
+       drop 
+       foreign key FKam9m6cw3jgye54ltd2xrnk818;
+
+    alter table identityiq.spt_application 
+       drop 
+       foreign key FK27agl8inv18vxa370rnhbss30;
+
+    alter table identityiq.spt_application 
+       drop 
+       foreign key FKntlbgo69p5yhm3litlje9798g;
+
+    alter table identityiq.spt_application 
+       drop 
+       foreign key FKinlcagndni6i9xdctdivcl2ne;
+
+    alter table identityiq.spt_application 
+       drop 
+       foreign key FKhwhrrykvnnguijemwxxd5sn8t;
+
+    alter table identityiq.spt_application 
+       drop 
+       foreign key FKpen32pdmnkn8icwjkusye7uul;
+
+    alter table identityiq.spt_application 
+       drop 
+       foreign key FKbdx986tnctokxdrqw8q77s5rm;
+
+    alter table identityiq.spt_application_remediators 
+       drop 
+       foreign key FK362oq0bg8kyjh8a8x6b870jkx;
+
+    alter table identityiq.spt_application_remediators 
+       drop 
+       foreign key FK8csqgw7ff1rb2f1y0gtl4nbcc;
+
+    alter table identityiq.spt_application_activity 
+       drop 
+       foreign key FKp0r4scrot0prnyokpjxt2649j;
+
+    alter table identityiq.spt_application_schema 
+       drop 
+       foreign key FKkd8l977v65omox0wln8f6j20u;
+
+    alter table identityiq.spt_application_schema 
+       drop 
+       foreign key FKl0g1ud8tainvo5qqgw0vsyum6;
+
+    alter table identityiq.spt_application_schema 
+       drop 
+       foreign key FK4sj1w1c5l3xn6dl2mbfmcgq95;
+
+    alter table identityiq.spt_application_schema 
+       drop 
+       foreign key FKcm5n6jy4gyawyrrv3ge1e7fqc;
+
+    alter table identityiq.spt_application_schema 
+       drop 
+       foreign key FKov3msut61m895vk42fljyh68i;
+
+    alter table identityiq.spt_application_schema 
+       drop 
+       foreign key FK78hblkspg3qrgy9uy4yh6amt2;
+
+    alter table identityiq.spt_application_schema 
+       drop 
+       foreign key FKd3sov5jd5q1tvg43bervh4isw;
+
+    alter table identityiq.spt_application_scorecard 
+       drop 
+       foreign key FKgq6j2537q2t6enu2ots2gwlug;
+
+    alter table identityiq.spt_application_scorecard 
+       drop 
+       foreign key FKd25itmjnbgivvbvknkbs4dko2;
+
+    alter table identityiq.spt_application_scorecard 
+       drop 
+       foreign key FKncvny5il4loprlf8ed4vkkm5o;
+
+    alter table identityiq.spt_app_secondary_owners 
+       drop 
+       foreign key FKre2f8vro021ipil4lgflrrx9p;
+
+    alter table identityiq.spt_app_secondary_owners 
+       drop 
+       foreign key FK5paly2u3hu7s3cnlx9er1tcfg;
+
+    alter table identityiq.spt_arch_cert_item_apps 
+       drop 
+       foreign key FKjsbh6q9006l09jd5qso3kyn33;
+
+    alter table identityiq.spt_attachment 
+       drop 
+       foreign key FKbyb94bn214vosuh3a9cr6ydi3;
+
+    alter table identityiq.spt_attachment 
+       drop 
+       foreign key FKn1iv5d2bgun4hh7gmnyqyl0u7;
+
+    alter table identityiq.spt_audit_config 
+       drop 
+       foreign key FKn99ngjtt90uu0e6osp4ben0k0;
+
+    alter table identityiq.spt_audit_config 
+       drop 
+       foreign key FKnbd331q7w6aqq9xs5d2wmi63u;
+
+    alter table identityiq.spt_audit_event 
+       drop 
+       foreign key FKhhxtrj41bo44qrvg1d0m5ytsy;
+
+    alter table identityiq.spt_audit_event 
+       drop 
+       foreign key FK98m5i7uik1q162vtvklx4uwxy;
+
+    alter table identityiq.spt_authentication_answer 
+       drop 
+       foreign key FKg7ahr1e8ce0qnpwy5ukybfdlc;
+
+    alter table identityiq.spt_authentication_answer 
+       drop 
+       foreign key FKeadtkbftr4xwev6djc6bt0crh;
+
+    alter table identityiq.spt_authentication_answer 
+       drop 
+       foreign key FKt1ogpk91rvbm8w1e532nocdif;
+
+    alter table identityiq.spt_authentication_question 
+       drop 
+       foreign key FKo1do8f67g11idf1a7147kjvvi;
+
+    alter table identityiq.spt_authentication_question 
+       drop 
+       foreign key FKhwy7jvglm1yvvhjej8npruff2;
+
+    alter table identityiq.spt_batch_request 
+       drop 
+       foreign key FKkv0v31yspj4ga5o9x6pigtmbk;
+
+    alter table identityiq.spt_batch_request 
+       drop 
+       foreign key FKmi63tgq6kqghkrypoin7pqh5a;
+
+    alter table identityiq.spt_batch_request_item 
+       drop 
+       foreign key FK4uxgxj681uaiqpw0qku9fu49p;
+
+    alter table identityiq.spt_batch_request_item 
+       drop 
+       foreign key FK8utyq880cffo95ui7mxr5tok8;
+
+    alter table identityiq.spt_batch_request_item 
+       drop 
+       foreign key FKocx3j2y8pqextntj6l74qvlcj;
+
+    alter table identityiq.spt_bundle 
+       drop 
+       foreign key FKo1g4dgf57gojmopj8cmavgxjk;
+
+    alter table identityiq.spt_bundle 
+       drop 
+       foreign key FKbke0asxsp6fxyv9i8ax4dfis0;
+
+    alter table identityiq.spt_bundle 
+       drop 
+       foreign key FKimfl4xyw45yyv2wvsq9ymploe;
+
+    alter table identityiq.spt_bundle 
+       drop 
+       foreign key FKg6aah205ahbj6cdnu067npuqn;
+
+    alter table identityiq.spt_bundle 
+       drop 
+       foreign key FKouwy1vyabs54byfgq0md6xg98;
+
+    alter table identityiq.spt_bundle 
+       drop 
+       foreign key FK8q7rqxa31n8e4byky2su1aul7;
+
+    alter table identityiq.spt_bundle_archive 
+       drop 
+       foreign key FK9ikprcio0wk332m95ja8i99nm;
+
+    alter table identityiq.spt_bundle_archive 
+       drop 
+       foreign key FKsoj8lev1leryowpm7imnqq2g1;
+
+    alter table identityiq.spt_bundle_children 
+       drop 
+       foreign key FKb47g0894bupcgkm3ram9lepgi;
+
+    alter table identityiq.spt_bundle_children 
+       drop 
+       foreign key FKsislghstl6iawguwrnvx76rpk;
+
+    alter table identityiq.spt_bundle_permits 
+       drop 
+       foreign key FKi5wtu493fivl2kxblg9ei0f51;
+
+    alter table identityiq.spt_bundle_permits 
+       drop 
+       foreign key FKcclfiby5ny4jprvjkhd2wyy14;
+
+    alter table identityiq.spt_bundle_profile_relation 
+       drop 
+       foreign key FKmagmq7lgmic1artsln48lpcaw;
+
+    alter table identityiq.spt_bundle_profile_relation_step 
+       drop 
+       foreign key FK9ge6smvhp8n0fcl408e86tvia;
+
+    alter table identityiq.spt_bundle_requirements 
+       drop 
+       foreign key FKf5ff4s6ac2kr4tdan3hoxpogn;
+
+    alter table identityiq.spt_bundle_requirements 
+       drop 
+       foreign key FKmwhuhsy3pxr2qfitnua7s12rf;
+
+    alter table identityiq.spt_capability 
+       drop 
+       foreign key FKfc37j2eq2ue3bkwjujokswgwv;
+
+    alter table identityiq.spt_capability 
+       drop 
+       foreign key FKhw853kl2ued70sd1fofo2fo2f;
+
+    alter table identityiq.spt_capability_children 
+       drop 
+       foreign key FKcustr3gvq1r7v2dsv0635gyal;
+
+    alter table identityiq.spt_capability_children 
+       drop 
+       foreign key FKj5rdhd8hf7vrwg06pvvnewevy;
+
+    alter table identityiq.spt_capability_rights 
+       drop 
+       foreign key FK2ly05h392vp6y87sw157to4if;
+
+    alter table identityiq.spt_capability_rights 
+       drop 
+       foreign key FK5hked97sfwstl920p4xpbj7d9;
+
+    alter table identityiq.spt_category 
+       drop 
+       foreign key FK6ly2lvlw1x3co3kllh32w9it;
+
+    alter table identityiq.spt_category 
+       drop 
+       foreign key FKh9mqo4to3wcj85auwfd1v0vuq;
+
+    alter table identityiq.spt_cert_action_assoc 
+       drop 
+       foreign key FK7lf26b9a79fiq8ra40n6c9jox;
+
+    alter table identityiq.spt_cert_action_assoc 
+       drop 
+       foreign key FKimetcxjfnxeb3uxisl0re6h7c;
+
+    alter table identityiq.spt_certification 
+       drop 
+       foreign key FKkam40wtg536xdls5oxfov4o42;
+
+    alter table identityiq.spt_certification 
+       drop 
+       foreign key FKnqhv931l5n1bu20lpcqwplr6x;
+
+    alter table identityiq.spt_certification 
+       drop 
+       foreign key FKawqph0q6n3ikiqhhytcm8dnbe;
+
+    alter table identityiq.spt_certification_def_tags 
+       drop 
+       foreign key FKiqp17o6qbtywuq5xa0i7ftbdq;
+
+    alter table identityiq.spt_certification_def_tags 
+       drop 
+       foreign key FK874kcq4p7hyw2ai9h2ctm1olh;
+
+    alter table identityiq.spt_certification_groups 
+       drop 
+       foreign key FKex7xpxslou4ye7adrputklihy;
+
+    alter table identityiq.spt_certification_groups 
+       drop 
+       foreign key FKil0cc1sbmueu7oiptxr3j62px;
+
+    alter table identityiq.spt_certification_tags 
+       drop 
+       foreign key FK841eyy68p6495npv6dwpi04j0;
+
+    alter table identityiq.spt_certification_tags 
+       drop 
+       foreign key FKgpbsjaoc1wocq3euppijv9p15;
+
+    alter table identityiq.spt_certification_action 
+       drop 
+       foreign key FKi48dvgroqefpxtfa7pweh6o8b;
+
+    alter table identityiq.spt_certification_action 
+       drop 
+       foreign key FK6vi46tjqxbjj146o4o2g4nyfs;
+
+    alter table identityiq.spt_certification_action 
+       drop 
+       foreign key FKqfesh5gjixog7vmn3smfijoij;
+
+    alter table identityiq.spt_certification_archive 
+       drop 
+       foreign key FK1hkx6vis9eb73wy7c4pc1b8vf;
+
+    alter table identityiq.spt_certification_archive 
+       drop 
+       foreign key FK7mfm8h2b8nn9atr7qh5qly4l5;
+
+    alter table identityiq.spt_certification_challenge 
+       drop 
+       foreign key FKf7hyeykya823607fv2qvgdloe;
+
+    alter table identityiq.spt_certification_challenge 
+       drop 
+       foreign key FK22gq5pf504r23jw4knwce7xs5;
+
+    alter table identityiq.spt_certification_definition 
+       drop 
+       foreign key FKcr18syune0mkqk7ixr4jth5le;
+
+    alter table identityiq.spt_certification_definition 
+       drop 
+       foreign key FKgd080tua8dkp274bq1wapbb1a;
+
+    alter table identityiq.spt_certification_delegation 
+       drop 
+       foreign key FK23qqsi30cp25uv1am5yurcq0j;
+
+    alter table identityiq.spt_certification_delegation 
+       drop 
+       foreign key FKgxejqcvofo95foucj5vg4u3qs;
+
+    alter table identityiq.spt_certification_entity 
+       drop 
+       foreign key FKip367cn9lac3qe96fw0ccljd1;
+
+    alter table identityiq.spt_certification_entity 
+       drop 
+       foreign key FK_8ldyhh9o0vcq3n294rbfjs415;
+
+    alter table identityiq.spt_certification_entity 
+       drop 
+       foreign key FK_94kwlqdf1rlbuj6l25e71dg6c;
+
+    alter table identityiq.spt_certification_entity 
+       drop 
+       foreign key FK_4kgyc7xxjq27248f3cpe2hhu;
+
+    alter table identityiq.spt_certification_entity 
+       drop 
+       foreign key FK_hyixy5s22roljj5pk6ir6xd2p;
+
+    alter table identityiq.spt_certification_group 
+       drop 
+       foreign key FKlhja2iwhg5a62sq6f1buj2axo;
+
+    alter table identityiq.spt_certification_group 
+       drop 
+       foreign key FKqkcuv3m20nm9bgj5lp1f0pvae;
+
+    alter table identityiq.spt_certification_group 
+       drop 
+       foreign key FKkekr0ucddvo7a8l6gcrccuudg;
+
+    alter table identityiq.spt_certification_item 
+       drop 
+       foreign key FKlge6i5dbsbcsnxg6elephhq18;
+
+    alter table identityiq.spt_certification_item 
+       drop 
+       foreign key FKnwb5vj6hwftfgtl9f283rvsfg;
+
+    alter table identityiq.spt_certification_item 
+       drop 
+       foreign key FKns942qq8bd2upr6b66wbaiekj;
+
+    alter table identityiq.spt_certification_item 
+       drop 
+       foreign key FK_2bwhd2rbxp1nvs39jxf4dothm;
+
+    alter table identityiq.spt_certification_item 
+       drop 
+       foreign key FK_183ktprgvdwfefivf1699hd02;
+
+    alter table identityiq.spt_certification_item 
+       drop 
+       foreign key FK_sqwuid379j4nfp6ykmbacjrk;
+
+    alter table identityiq.spt_certification_item 
+       drop 
+       foreign key FK_1w71laay1l62qeujievv5l3gg;
+
+    alter table identityiq.spt_certifiers 
+       drop 
+       foreign key FKq2kybcv1awb6cte2q45gkupei;
+
+    alter table identityiq.spt_cert_item_applications 
+       drop 
+       foreign key FKmgki0koeep17cgfpir44de6mj;
+
+    alter table identityiq.spt_cert_item_classifications 
+       drop 
+       foreign key FK9dehgtst8bbi31palx2ygp8hi;
+
+    alter table identityiq.spt_child_certification_ids 
+       drop 
+       foreign key FK9syrav59593wgi39hrnt8kgk5;
+
+    alter table identityiq.spt_cloud_access3way 
+       drop 
+       foreign key FK25ss4xxt4e2nvwcd8ne1iw3b4;
+
+    alter table identityiq.spt_cloud_access3way 
+       drop 
+       foreign key FK6o7a9k31y9pc0xy7bd24uoqu5;
+
+    alter table identityiq.spt_cloud_access3way 
+       drop 
+       foreign key FKe65krw4kpvcduwmsp1mggynbg;
+
+    alter table identityiq.spt_configuration 
+       drop 
+       foreign key FKhjkwvbp3m63yllk6lbo4bqro7;
+
+    alter table identityiq.spt_configuration 
+       drop 
+       foreign key FKp90cf11ijtygd9hxlgyo0psaa;
+
+    alter table identityiq.spt_correlation_config 
+       drop 
+       foreign key FK8e7jfdj8slsjmmtl9saxefuep;
+
+    alter table identityiq.spt_correlation_config 
+       drop 
+       foreign key FKrguogs2r8ljaxdto8u4h3e9tk;
+
+    alter table identityiq.spt_custom 
+       drop 
+       foreign key FKn2tjdgfk4rvy3vosf1v3kac2t;
+
+    alter table identityiq.spt_custom 
+       drop 
+       foreign key FKlkx2x8fdy1rwhtnntacydwmek;
+
+    alter table identityiq.spt_deleted_object 
+       drop 
+       foreign key FK18xcbn9moxo06bcfyg6l7ggcy;
+
+    alter table identityiq.spt_deleted_object 
+       drop 
+       foreign key FK187408eyxdoomujowu44neqde;
+
+    alter table identityiq.spt_deleted_object 
+       drop 
+       foreign key FKe7dmgcmhkb13omi8dkh2ig89f;
+
+    alter table identityiq.spt_dictionary 
+       drop 
+       foreign key FKauca1novn79fd19aug3bjsqya;
+
+    alter table identityiq.spt_dictionary 
+       drop 
+       foreign key FK7kdy9g1knlowpv3v4rtn7w1py;
+
+    alter table identityiq.spt_dictionary_term 
+       drop 
+       foreign key FKcyplq38o2e3ajj515xs3vfrf3;
+
+    alter table identityiq.spt_dictionary_term 
+       drop 
+       foreign key FK1lnmjjwf7i80cupehvm066hdf;
+
+    alter table identityiq.spt_dictionary_term 
+       drop 
+       foreign key FKrtfr7u5wa0hngye2pixfgfjtq;
+
+    alter table identityiq.spt_dynamic_scope 
+       drop 
+       foreign key FKibw7yhehyvo75yf2gqp4nj5iq;
+
+    alter table identityiq.spt_dynamic_scope 
+       drop 
+       foreign key FKpygxoi3poo3klc46c5o72qe48;
+
+    alter table identityiq.spt_dynamic_scope 
+       drop 
+       foreign key FK1v3xd4m55jijgosuof9e6glj8;
+
+    alter table identityiq.spt_dynamic_scope 
+       drop 
+       foreign key FKcv5id4r7gnsso13xjubxaqnkp;
+
+    alter table identityiq.spt_dynamic_scope 
+       drop 
+       foreign key FKktwyfv8gvs56q5ilfuguki5l5;
+
+    alter table identityiq.spt_dynamic_scope 
+       drop 
+       foreign key FKtktdhh12wn2ah31yrges9oiu1;
+
+    alter table identityiq.spt_dynamic_scope 
+       drop 
+       foreign key FKexhlawv29rux6bct75f19h91v;
+
+    alter table identityiq.spt_dynamic_scope 
+       drop 
+       foreign key FK5qib64c7xdiovhut2k81054iu;
+
+    alter table identityiq.spt_dynamic_scope_exclusions 
+       drop 
+       foreign key FKrmu2wy5qkgpggwyvtlssi5ehk;
+
+    alter table identityiq.spt_dynamic_scope_exclusions 
+       drop 
+       foreign key FK6y9ox5g2qxpgjp2jp69qqsj1g;
+
+    alter table identityiq.spt_dynamic_scope_inclusions 
+       drop 
+       foreign key FK3ggbccvk2ambqjdw8iynyt965;
+
+    alter table identityiq.spt_dynamic_scope_inclusions 
+       drop 
+       foreign key FKol4cq5u3jcqik19amte10slgr;
+
+    alter table identityiq.spt_email_template 
+       drop 
+       foreign key FKbgbd2hiyxohe6mp0wks9w7i6m;
+
+    alter table identityiq.spt_email_template 
+       drop 
+       foreign key FKnn3hbn1pd7e492186rskdwd3c;
+
+    alter table identityiq.spt_email_template_properties 
+       drop 
+       foreign key emailtemplateproperties;
+
+    alter table identityiq.spt_entitlement_group 
+       drop 
+       foreign key FKhejppx2y8jb7gn2f5kow3rd4s;
+
+    alter table identityiq.spt_entitlement_group 
+       drop 
+       foreign key FKtckmuosehsos4esc6e7aw96x2;
+
+    alter table identityiq.spt_entitlement_group 
+       drop 
+       foreign key FKkgvp9pnx75witsnhfhmi2j3e;
+
+    alter table identityiq.spt_entitlement_group 
+       drop 
+       foreign key FK2r4pe9yr6ieul6o7j3gbh4ek4;
+
+    alter table identityiq.spt_entitlement_snapshot 
+       drop 
+       foreign key FKg28gich6xc717ufitfs9b7ho8;
+
+    alter table identityiq.spt_file_bucket 
+       drop 
+       foreign key FK4j1imfpmt238fhglhfh95rrs8;
+
+    alter table identityiq.spt_file_bucket 
+       drop 
+       foreign key FKaw7g3a6la8gky8coehtta2u32;
+
+    alter table identityiq.spt_file_bucket 
+       drop 
+       foreign key FK59ymu1g5ld3l6j97mx7uq0jfb;
+
+    alter table identityiq.spt_form 
+       drop 
+       foreign key FKblc1wv6n85ie3ajioskbhtb87;
+
+    alter table identityiq.spt_form 
+       drop 
+       foreign key FK7j84f82idyeb2pu1giatg6b00;
+
+    alter table identityiq.spt_form 
+       drop 
+       foreign key FKrwbs6jyeoe0f24q9u878kktna;
+
+    alter table identityiq.spt_generic_constraint 
+       drop 
+       foreign key FK2vhfe3qafdd3ok28mm1h90om9;
+
+    alter table identityiq.spt_generic_constraint 
+       drop 
+       foreign key FKi7nk6nu4vkvasene3f14mnykm;
+
+    alter table identityiq.spt_generic_constraint 
+       drop 
+       foreign key FKkthxi9af57y8xjm6pps9h8lr4;
+
+    alter table identityiq.spt_generic_constraint 
+       drop 
+       foreign key FKedawydx5t9h0xmnps51w6krpb;
+
+    alter table identityiq.spt_generic_constraint 
+       drop 
+       foreign key FK6oqb9qqui7wajajasxflcfcnb;
+
+    alter table identityiq.spt_group_definition 
+       drop 
+       foreign key FKku7t8vcce9maxmpgh025h8rpm;
+
+    alter table identityiq.spt_group_definition 
+       drop 
+       foreign key FKgpkyterj8orw9ue1ecnaxcxac;
+
+    alter table identityiq.spt_group_definition 
+       drop 
+       foreign key FKsswaiwl9wgq1x7x66w7dw73sr;
+
+    alter table identityiq.spt_group_definition 
+       drop 
+       foreign key FKhxm0nnx7gf472ykocqgl9yxne;
+
+    alter table identityiq.spt_group_factory 
+       drop 
+       foreign key FKh274opn41khwnbi0yj2n37ftm;
+
+    alter table identityiq.spt_group_factory 
+       drop 
+       foreign key FK4l56xl5r807s9o9clecfa83sp;
+
+    alter table identityiq.spt_group_factory 
+       drop 
+       foreign key FKhbdh4oyxsx9mqfsnvk57vqotk;
+
+    alter table identityiq.spt_group_index 
+       drop 
+       foreign key FKf94ksv2vpcmefy7dtedsr4d8i;
+
+    alter table identityiq.spt_group_index 
+       drop 
+       foreign key FKqvs2uruibvlbl9he3319jiy67;
+
+    alter table identityiq.spt_group_index 
+       drop 
+       foreign key FKk8c1wd9ht5mtgdkgr6w2pwx07;
+
+    alter table identityiq.spt_group_permissions 
+       drop 
+       foreign key FKcratih77tg9y9028xrpsiy0x5;
+
+    alter table identityiq.spt_identity 
+       drop 
+       foreign key FKdco8at7cn3mnhjf6xaahalooj;
+
+    alter table identityiq.spt_identity 
+       drop 
+       foreign key FKikbm1x7vdijclac4vu15u5ovv;
+
+    alter table identityiq.spt_identity 
+       drop 
+       foreign key FKoq0aevty64ohgu1m3y5n2odfb;
+
+    alter table identityiq.spt_identity 
+       drop 
+       foreign key FKkpuohy1m4u7hhicokkoixnh3v;
+
+    alter table identityiq.spt_identity 
+       drop 
+       foreign key FK6yjqfgtb1teavu30xemwke50h;
+
+    alter table identityiq.spt_identity 
+       drop 
+       foreign key FK996is5ceoc7ssc7n0cfgavp1n;
+
+    alter table identityiq.spt_identity 
+       drop 
+       foreign key FKl62tfosnxhkn8al4i5m098g6l;
+
+    alter table identityiq.spt_identity 
+       drop 
+       foreign key FK7l1j3c1e9yne2d7ercls5w169;
+
+    alter table identityiq.spt_identity 
+       drop 
+       foreign key FK6erec9yefdkhc6gj4g6wpufv9;
+
+    alter table identityiq.spt_identity 
+       drop 
+       foreign key FK8ro3qhcvypwaofa3yrnal3fsi;
+
+    alter table identityiq.spt_identity 
+       drop 
+       foreign key FKaw4ye4m198dibbj2atxjg85m7;
+
+    alter table identityiq.spt_identity_archive 
+       drop 
+       foreign key FKp8j75f2pk9xvqyimweu32w6f8;
+
+    alter table identityiq.spt_identity_archive 
+       drop 
+       foreign key FKmridtwmjtph1265lllya9w2mn;
+
+    alter table identityiq.spt_identity_assigned_roles 
+       drop 
+       foreign key FKheohgr0xuxklx9sfhjde58ig9;
+
+    alter table identityiq.spt_identity_assigned_roles 
+       drop 
+       foreign key FKf367abg77497pwgtr61co5mc;
+
+    alter table identityiq.spt_identity_bundles 
+       drop 
+       foreign key FKmr5pwrd4ysq4uiy970s0gpija;
+
+    alter table identityiq.spt_identity_bundles 
+       drop 
+       foreign key FKcuq8yi3rh1dxbbr7nt33io0h4;
+
+    alter table identityiq.spt_identity_capabilities 
+       drop 
+       foreign key FK8rvftn57xdt7vtg3oe2i3bn7i;
+
+    alter table identityiq.spt_identity_capabilities 
+       drop 
+       foreign key FKe9bo37xbckkaq2k85omvmo9ld;
+
+    alter table identityiq.spt_identity_controlled_scopes 
+       drop 
+       foreign key FKoahj6hw5kk9163bfes49lvasv;
+
+    alter table identityiq.spt_identity_controlled_scopes 
+       drop 
+       foreign key FKqjnmhlsld4pvlix9kbrvlmsb1;
+
+    alter table identityiq.spt_identity_entitlement 
+       drop 
+       foreign key FKlnoli5e2k3cofry0kh5lqwvk2;
+
+    alter table identityiq.spt_identity_entitlement 
+       drop 
+       foreign key FKqy3hyiptyuoo0ik8nfewymdio;
+
+    alter table identityiq.spt_identity_entitlement 
+       drop 
+       foreign key FKjief1jwgixlilqiqsvkpx0k9e;
+
+    alter table identityiq.spt_identity_entitlement 
+       drop 
+       foreign key FK9p3id5o2as2stlq47md58fm3b;
+
+    alter table identityiq.spt_identity_entitlement 
+       drop 
+       foreign key FKcn0l4kl1lpjkg7usf4okua4d8;
+
+    alter table identityiq.spt_identity_entitlement 
+       drop 
+       foreign key FKbpm8wgk9stf16g8w9ujx10qw3;
+
+    alter table identityiq.spt_identity_entitlement 
+       drop 
+       foreign key FK6cwcsuwgv6ydwqpnm6jto062q;
+
+    alter table identityiq.spt_identity_history_item 
+       drop 
+       foreign key FKji55d6komkmaodbat8ykt27ut;
+
+    alter table identityiq.spt_identity_history_item 
+       drop 
+       foreign key FKa9cu5shr2oefnkrrew96b98nc;
+
+    alter table identityiq.spt_identity_request 
+       drop 
+       foreign key FKrnecq87gn8rjrj2vbn9koxwc1;
+
+    alter table identityiq.spt_identity_request 
+       drop 
+       foreign key FKpstoy7u3dse9pl2h5ryub6h0w;
+
+    alter table identityiq.spt_identity_request_item 
+       drop 
+       foreign key FKdrgm0omo927u9hkgtx0m4rbmb;
+
+    alter table identityiq.spt_identity_request_item 
+       drop 
+       foreign key FKfax65ddwd2dwvkt9rsdqthshd;
+
+    alter table identityiq.spt_identity_role_metadata 
+       drop 
+       foreign key FKlbwupgie8o3gpjt857djjipg9;
+
+    alter table identityiq.spt_identity_role_metadata 
+       drop 
+       foreign key FKptvypo1q0ekqnlnt7tkl1u2na;
+
+    alter table identityiq.spt_identity_snapshot 
+       drop 
+       foreign key FKh03yxqsq7ebvwlwcthihtym07;
+
+    alter table identityiq.spt_identity_snapshot 
+       drop 
+       foreign key FKj24y3i8my2r0c3il58dlww3fa;
+
+    alter table identityiq.spt_identity_trigger 
+       drop 
+       foreign key FKaoupv62m0yus73314iwn0fclq;
+
+    alter table identityiq.spt_identity_trigger 
+       drop 
+       foreign key FK6est6a8xpuhjgqv7b0d8yvmal;
+
+    alter table identityiq.spt_identity_trigger 
+       drop 
+       foreign key FK4yqufhetuoj6wig3t5n5rw7xh;
+
+    alter table identityiq.spt_identity_workgroups 
+       drop 
+       foreign key FKew5309x0hinshtjed2o9p4lu8;
+
+    alter table identityiq.spt_identity_workgroups 
+       drop 
+       foreign key FKdubcl4txlwq72y89p09vsokp3;
+
+    alter table identityiq.spt_integration_config 
+       drop 
+       foreign key FK9i40hwin9s24k40gf9jbcjmyg;
+
+    alter table identityiq.spt_integration_config 
+       drop 
+       foreign key FKkra0w53mfbawmb7tun0thw07j;
+
+    alter table identityiq.spt_integration_config 
+       drop 
+       foreign key FK4m8ag5j3ca0w07n396xv4ovlx;
+
+    alter table identityiq.spt_integration_config 
+       drop 
+       foreign key FKnn9f0lgf5ewip65a8t2mhi97u;
+
+    alter table identityiq.spt_integration_config 
+       drop 
+       foreign key FK7dcjq7gk21x6gl2w55r9rgnnq;
+
+    alter table identityiq.spt_jasper_files 
+       drop 
+       foreign key FKarvo68602qubbljqm974ejrao;
+
+    alter table identityiq.spt_jasper_files 
+       drop 
+       foreign key FK38q00anepn1enkf14vh5kt0p0;
+
+    alter table identityiq.spt_jasper_page_bucket 
+       drop 
+       foreign key FK7ajqlhkio1lj6deitro8rufr4;
+
+    alter table identityiq.spt_jasper_page_bucket 
+       drop 
+       foreign key FKebcpjeggovthx5rfslffvm06l;
+
+    alter table identityiq.spt_jasper_result 
+       drop 
+       foreign key FKaov2d8748uea72k8riblr9iw;
+
+    alter table identityiq.spt_jasper_result 
+       drop 
+       foreign key FK48lfhuwg00rdb7lu24q8iqemj;
+
+    alter table identityiq.spt_jasper_template 
+       drop 
+       foreign key FK9gqhh1f6h8uvb0ijwd2x8d3xd;
+
+    alter table identityiq.spt_jasper_template 
+       drop 
+       foreign key FKd7fy4u4sv1o5q0oen7ip2trng;
+
+    alter table identityiq.spt_link 
+       drop 
+       foreign key FKlt4unsy5cp7psyl716sjq527e;
+
+    alter table identityiq.spt_link 
+       drop 
+       foreign key FKg0l571s3kkovl1l5q24wsn5h2;
+
+    alter table identityiq.spt_link 
+       drop 
+       foreign key FK7do4oyl8j399aynq34dosvk6o;
+
+    alter table identityiq.spt_link 
+       drop 
+       foreign key FKsc0du71d7t0p5jx4sqbwlrtc7;
+
+    alter table identityiq.spt_localized_attribute 
+       drop 
+       foreign key FK4ahm8gyl5gwhj8d4qgbwyynv;
+
+    alter table identityiq.spt_managed_attribute 
+       drop 
+       foreign key FK3gb72xtjki5mp7uosqt8y4pvn;
+
+    alter table identityiq.spt_managed_attribute 
+       drop 
+       foreign key FKp22ur089e238refu7d4ey3vad;
+
+    alter table identityiq.spt_managed_attribute 
+       drop 
+       foreign key FKh34qiq4aglfffr9xwpik781vj;
+
+    alter table identityiq.spt_managed_attr_inheritance 
+       drop 
+       foreign key FK4ioitymnwqibnmecupdfuo3ri;
+
+    alter table identityiq.spt_managed_attr_inheritance 
+       drop 
+       foreign key FK5w1va2uar8ndocw86uxw22fyx;
+
+    alter table identityiq.spt_managed_attr_perms 
+       drop 
+       foreign key FKgb5h5u8b3v7q8thhsyw3a3x2d;
+
+    alter table identityiq.spt_managed_attr_target_perms 
+       drop 
+       foreign key FKgxeh9kjs3fstpnq4tp0cch0h7;
+
+    alter table identityiq.spt_message_template 
+       drop 
+       foreign key FKbhf643rsydyey69y4clalwes3;
+
+    alter table identityiq.spt_message_template 
+       drop 
+       foreign key FK93cucj6fysk1u4s1mggidhsjw;
+
+    alter table identityiq.spt_mining_config 
+       drop 
+       foreign key FKe2p3b82e1gpt5n75cfkj19573;
+
+    alter table identityiq.spt_mining_config 
+       drop 
+       foreign key FKo5ji502vpitlcnl4ie54trv3a;
+
+    alter table identityiq.spt_mitigation_expiration 
+       drop 
+       foreign key FKpym4olxxt5hvtw2h6h5qehsg5;
+
+    alter table identityiq.spt_mitigation_expiration 
+       drop 
+       foreign key FKnq1a0dvm762fk9tcucs5ro4h3;
+
+    alter table identityiq.spt_mitigation_expiration 
+       drop 
+       foreign key FKrp62md93f75jd1i1hof0pdr01;
+
+    alter table identityiq.spt_mitigation_expiration 
+       drop 
+       foreign key FKdk2mv4vumkj87erjys2ecjjqy;
+
+    alter table identityiq.spt_monitoring_statistic 
+       drop 
+       foreign key FK1oylxmpnab6ukcexs91d4d3ps;
+
+    alter table identityiq.spt_monitoring_statistic 
+       drop 
+       foreign key FK66fxpvt139gb5aghd369t0q1s;
+
+    alter table identityiq.spt_monitoring_statistic_tags 
+       drop 
+       foreign key FKa6efhhukixvrd4fucp8n3hrlm;
+
+    alter table identityiq.spt_monitoring_statistic_tags 
+       drop 
+       foreign key FKk900lsdj83sd0cp9o59evn9nj;
+
+    alter table identityiq.spt_object_classification 
+       drop 
+       foreign key FK4hfvqf5hc3a6rl944f4h171tn;
+
+    alter table identityiq.spt_object_config 
+       drop 
+       foreign key FKtcjesncjqdcd4inr41kpgpwaj;
+
+    alter table identityiq.spt_object_config 
+       drop 
+       foreign key FK1w6x1owivjjlgw0ojfk6aatm5;
+
+    alter table identityiq.spt_partition_result 
+       drop 
+       foreign key FK9fa80qf6up4eunpumew96wmxr;
+
+    alter table identityiq.spt_partition_result 
+       drop 
+       foreign key FKguaao9nkvy8wtshwdjls9qe17;
+
+    alter table identityiq.spt_partition_result 
+       drop 
+       foreign key FK9svig87lf8npttavcvalbuipb;
+
+    alter table identityiq.spt_password_policy 
+       drop 
+       foreign key FK15k2353b0bf4swvqkteyjutb8;
+
+    alter table identityiq.spt_password_policy_holder 
+       drop 
+       foreign key FK47skxwy6vwmh6qdkoo76gao8c;
+
+    alter table identityiq.spt_password_policy_holder 
+       drop 
+       foreign key FK4flfb6aud9uvwfhrdt228g7b7;
+
+    alter table identityiq.spt_password_policy_holder 
+       drop 
+       foreign key FKsa0togid3d2ers5l0u8p0xxcp;
+
+    alter table identityiq.spt_persisted_file 
+       drop 
+       foreign key FKay7i45q2li8p1lnvdybls0t3t;
+
+    alter table identityiq.spt_persisted_file 
+       drop 
+       foreign key FKlj0anhv8hg741lmn738bahrek;
+
+    alter table identityiq.spt_plugin 
+       drop 
+       foreign key FKr3gksq71itxj5f837unefrg31;
+
+    alter table identityiq.spt_policy 
+       drop 
+       foreign key FKij2xlldhccmq534sl8n6587od;
+
+    alter table identityiq.spt_policy 
+       drop 
+       foreign key FKoebw2yqhc4j26mx83v49qyw1n;
+
+    alter table identityiq.spt_policy 
+       drop 
+       foreign key FK3cfyso96b28h21yaml8hbc3xi;
+
+    alter table identityiq.spt_policy 
+       drop 
+       foreign key FKgsvi652nk5hayfr8kc7p5ydy;
+
+    alter table identityiq.spt_policy_violation 
+       drop 
+       foreign key FKgxlmr2yos1bq05bqb3kxjyhdy;
+
+    alter table identityiq.spt_policy_violation 
+       drop 
+       foreign key FKlfnu8q3fgqq6w8l9t0v15gsjb;
+
+    alter table identityiq.spt_policy_violation 
+       drop 
+       foreign key FKphiamrjv42wu7uw5tcsbexjyw;
+
+    alter table identityiq.spt_policy_violation 
+       drop 
+       foreign key FKcfjl95jng7hghpw478qqgajyn;
+
+    alter table identityiq.spt_process_log 
+       drop 
+       foreign key FK7ll5fatw1p90l1quxoovyijej;
+
+    alter table identityiq.spt_process_log 
+       drop 
+       foreign key FKtgm6rfk5nrdbjswf140ad6jir;
+
+    alter table identityiq.spt_profile 
+       drop 
+       foreign key FKm77hrlacp3ynlthagggqmq8mn;
+
+    alter table identityiq.spt_profile 
+       drop 
+       foreign key FKdpexklt6enpa3qq3tg34t2i72;
+
+    alter table identityiq.spt_profile 
+       drop 
+       foreign key FKb6xsupwlh8e9b6sxrsojaq107;
+
+    alter table identityiq.spt_profile 
+       drop 
+       foreign key FKh7gmx9te7hdnjh138f0ys70bb;
+
+    alter table identityiq.spt_profile_constraints 
+       drop 
+       foreign key FKfnwocslrb1d7i22e0eyyonvu6;
+
+    alter table identityiq.spt_profile_permissions 
+       drop 
+       foreign key FK9wkru2lsxssnhaus718md3f2o;
+
+    alter table identityiq.spt_provisioning_request 
+       drop 
+       foreign key FKb0jveyf9sv2e042bjarn190pq;
+
+    alter table identityiq.spt_provisioning_request 
+       drop 
+       foreign key FKgtk4uysamt32hwwqxrdnceodg;
+
+    alter table identityiq.spt_provisioning_request 
+       drop 
+       foreign key FKe06usqanbltc3jw079m568c9d;
+
+    alter table identityiq.spt_quick_link 
+       drop 
+       foreign key FKr34ji3ugpva0sp95usrgaooih;
+
+    alter table identityiq.spt_quick_link 
+       drop 
+       foreign key FK8ircuuuw7sidwf8xmatked859;
+
+    alter table identityiq.spt_quick_link_options 
+       drop 
+       foreign key FKr2janfsixof6pqahju9ab112u;
+
+    alter table identityiq.spt_quick_link_options 
+       drop 
+       foreign key FK159pqn1fd0ubpapm62cy37akd;
+
+    alter table identityiq.spt_quick_link_options 
+       drop 
+       foreign key FKihngfm8iqb21en8gyeebmpj7h;
+
+    alter table identityiq.spt_remediation_item 
+       drop 
+       foreign key FKfd9yg9q55msovcqueyjodr6ui;
+
+    alter table identityiq.spt_remediation_item 
+       drop 
+       foreign key FKhlirh9cempdr7546c4oegeska;
+
+    alter table identityiq.spt_remediation_item 
+       drop 
+       foreign key FK6bb5fufbeok63cycwmdv1h0b3;
+
+    alter table identityiq.spt_remediation_item 
+       drop 
+       foreign key FK1vhqs5ybkgm91lv51hdyj68va;
+
+    alter table identityiq.spt_remote_login_token 
+       drop 
+       foreign key FKe2ofoif1sjdi94r0rhwsc6aqg;
+
+    alter table identityiq.spt_remote_login_token 
+       drop 
+       foreign key FK57qeahvi3aybfwrgf2mft28b0;
+
+    alter table identityiq.spt_request 
+       drop 
+       foreign key FK4wuia2w4ylm95aja22jnw6upf;
+
+    alter table identityiq.spt_request 
+       drop 
+       foreign key FK1st2f3b62703t2anet5iykocf;
+
+    alter table identityiq.spt_request 
+       drop 
+       foreign key FK2oj2nqukawo2p60yiloa72li9;
+
+    alter table identityiq.spt_request 
+       drop 
+       foreign key FKgwavtgcmunyt6bx3fvka2a5t2;
+
+    alter table identityiq.spt_request_arguments 
+       drop 
+       foreign key FK113ggg7785j6vdwb9xham03dc;
+
+    alter table identityiq.spt_request_definition 
+       drop 
+       foreign key FKgao87b86v1y7mrylu96ow04en;
+
+    alter table identityiq.spt_request_definition 
+       drop 
+       foreign key FKhe297ysa9fn4dmdljoq54njbs;
+
+    alter table identityiq.spt_request_definition 
+       drop 
+       foreign key FK2ttetyvbubn1jvp2n9urb6m5v;
+
+    alter table identityiq.spt_request_definition_rights 
+       drop 
+       foreign key FKp94t40blskwg0fuh854lfml1s;
+
+    alter table identityiq.spt_request_definition_rights 
+       drop 
+       foreign key FK3drvcyrlgw6waricqagimmd8e;
+
+    alter table identityiq.spt_request_returns 
+       drop 
+       foreign key FKpbhfh39gtywh48gc1hlfgngox;
+
+    alter table identityiq.spt_request_state 
+       drop 
+       foreign key FKqqjbvp3qvso1sb1ca6ombgter;
+
+    alter table identityiq.spt_resource_event 
+       drop 
+       foreign key FKt1snjotqsqvmoubnwv5vtpri6;
+
+    alter table identityiq.spt_right_config 
+       drop 
+       foreign key FKt1r57dhmuc884wt2ymu101hde;
+
+    alter table identityiq.spt_right_config 
+       drop 
+       foreign key FKdx0b0oat38fxsye0jgg5ulu9k;
+
+    alter table identityiq.spt_role_index 
+       drop 
+       foreign key FKo7ho4tlthd9rr80looh1ooito;
+
+    alter table identityiq.spt_role_index 
+       drop 
+       foreign key FKf0j6gmnubunnb5h7kfe33awf9;
+
+    alter table identityiq.spt_role_index 
+       drop 
+       foreign key FKl988ko9bkq0epm8ktn25tqpru;
+
+    alter table identityiq.spt_role_metadata 
+       drop 
+       foreign key FKaa82j55vly3sm9ftky9obxd38;
+
+    alter table identityiq.spt_role_metadata 
+       drop 
+       foreign key FKt5qt571k5ftna1xswfi723tat;
+
+    alter table identityiq.spt_role_metadata 
+       drop 
+       foreign key FK78iwr88o7i8dt8ibvi3vusjq8;
+
+    alter table identityiq.spt_role_mining_result 
+       drop 
+       foreign key FKjpslqep9tigfo52crhjg3hf5v;
+
+    alter table identityiq.spt_role_mining_result 
+       drop 
+       foreign key FKtok5e8qk7b61q9h76g7h7pr86;
+
+    alter table identityiq.spt_role_scorecard 
+       drop 
+       foreign key FKt6yfcgq98ed4bfi5ky81wjwdf;
+
+    alter table identityiq.spt_role_scorecard 
+       drop 
+       foreign key FKqrtue6hcnlf6qyr5qm0vfpwfn;
+
+    alter table identityiq.spt_role_scorecard 
+       drop 
+       foreign key FK4uodpdnn6r77dbqqa4ifdqja3;
+
+    alter table identityiq.spt_rule 
+       drop 
+       foreign key FKebikrnbibarckvm36915k8dc7;
+
+    alter table identityiq.spt_rule 
+       drop 
+       foreign key FKe7tgffr3v5sd2q739bndc72wr;
+
+    alter table identityiq.spt_rule_registry_callouts 
+       drop 
+       foreign key FKiescqm7tqapb2r71sgdcy20jk;
+
+    alter table identityiq.spt_rule_registry_callouts 
+       drop 
+       foreign key FK8csco7epf6euipthxuj0awqjp;
+
+    alter table identityiq.spt_rule_dependencies 
+       drop 
+       foreign key FKbju0wunboll2jdihl7c4xa0no;
+
+    alter table identityiq.spt_rule_dependencies 
+       drop 
+       foreign key FKgvxim0ew7xui4cfpk0gibucxa;
+
+    alter table identityiq.spt_rule_registry 
+       drop 
+       foreign key FKlswclannoqopuaet63sct4p74;
+
+    alter table identityiq.spt_rule_registry 
+       drop 
+       foreign key FKthpyc5ikucmt8mbhdcr980ucg;
+
+    alter table identityiq.spt_rule_signature_arguments 
+       drop 
+       foreign key FKdys6el89un39n7cyqey0sbdtt;
+
+    alter table identityiq.spt_rule_signature_returns 
+       drop 
+       foreign key FKrbsto8otv99kfe9kgyij37iml;
+
+    alter table identityiq.spt_schema_attributes 
+       drop 
+       foreign key FKhl9i3n7y97lpqq98etsp4urds;
+
+    alter table identityiq.spt_scope 
+       drop 
+       foreign key FKht5d7wfgqvify7p0nag6egr2;
+
+    alter table identityiq.spt_scope 
+       drop 
+       foreign key FK984w9lkkhtcrm8ib3y6b2qj8;
+
+    alter table identityiq.spt_scope 
+       drop 
+       foreign key FKpmmdhx9itj086j9dnu8ydh6gx;
+
+    alter table identityiq.spt_scorecard 
+       drop 
+       foreign key FK4cgtntcjhmqgrb6fcgion7psd;
+
+    alter table identityiq.spt_scorecard 
+       drop 
+       foreign key FKjlaay4af9d847oiooq03nwrkb;
+
+    alter table identityiq.spt_scorecard 
+       drop 
+       foreign key FKhwgs2272xcw9kr4uobastkiqj;
+
+    alter table identityiq.spt_score_config 
+       drop 
+       foreign key FK58s5g8wnl1pd9ckev17xhlfif;
+
+    alter table identityiq.spt_score_config 
+       drop 
+       foreign key FKj2ff5smsk1haaiyo1w7q7pj99;
+
+    alter table identityiq.spt_score_config 
+       drop 
+       foreign key FKdct987qb7na0fe12fov9gtp90;
+
+    alter table identityiq.spt_server_statistic 
+       drop 
+       foreign key FKo4ubx9xkjeqxgnsil2kq8863b;
+
+    alter table identityiq.spt_server_statistic 
+       drop 
+       foreign key FK5q7ultbynm7wn0wki1a0vhse7;
+
+    alter table identityiq.spt_service_lock 
+       drop 
+       foreign key FKiq6v3rrxwrku71j0ghepn66p5;
+
+    alter table identityiq.spt_service_status 
+       drop 
+       foreign key FKanvkx3ughno0yc6s33p8px5cu;
+
+    alter table identityiq.spt_sign_off_history 
+       drop 
+       foreign key FKgltduyt883x1og6dkgpt9n0uj;
+
+    alter table identityiq.spt_sign_off_history 
+       drop 
+       foreign key FK2ipk68cdtj3e4p6u5cp3y3ojc;
+
+    alter table identityiq.spt_sign_off_history 
+       drop 
+       foreign key FKoqlo63ls25h06ufiwokvd8l9g;
+
+    alter table identityiq.spt_snapshot_permissions 
+       drop 
+       foreign key FKd1pddppbj51lje4diqtw7ycs0;
+
+    alter table identityiq.spt_sodconstraint 
+       drop 
+       foreign key FKl4mjpujrolswau1wcu0mhn5yr;
+
+    alter table identityiq.spt_sodconstraint 
+       drop 
+       foreign key FKkdcp13gq48ggdtye8pas782pb;
+
+    alter table identityiq.spt_sodconstraint 
+       drop 
+       foreign key FKaoh6dc5hnbdth3l5s5el0ysg1;
+
+    alter table identityiq.spt_sodconstraint 
+       drop 
+       foreign key FK4o50l0rmgaju9n8exvb3pdf5b;
+
+    alter table identityiq.spt_sodconstraint 
+       drop 
+       foreign key FKsb73wu7qhwhp6dsypgpor8dsi;
+
+    alter table identityiq.spt_sodconstraint_left 
+       drop 
+       foreign key FKiaye28ptj6gmsp4tflo13r0qy;
+
+    alter table identityiq.spt_sodconstraint_left 
+       drop 
+       foreign key FKihnxab3mjkx483ftgngk6g0h1;
+
+    alter table identityiq.spt_sodconstraint_right 
+       drop 
+       foreign key FK1k33mlfft6ir3ao0scmod2y0i;
+
+    alter table identityiq.spt_sodconstraint_right 
+       drop 
+       foreign key FKi4p81605xg3ojoycpm4lyfa85;
+
+    alter table identityiq.spt_archived_cert_entity 
+       drop 
+       foreign key FKt3lg6vlrrdfqy5xo76lb5p06x;
+
+    alter table identityiq.spt_archived_cert_entity 
+       drop 
+       foreign key FKo4mknf6x4lxygjwvgyoxu3me3;
+
+    alter table identityiq.spt_archived_cert_entity 
+       drop 
+       foreign key FK8salwd54pmcixneotwbg1e8t1;
+
+    alter table identityiq.spt_archived_cert_item 
+       drop 
+       foreign key FK877k5d95c04j14sdw91fyrnth;
+
+    alter table identityiq.spt_archived_cert_item 
+       drop 
+       foreign key FKhoc03daa5guh1iq2isa67wnrg;
+
+    alter table identityiq.spt_archived_cert_item 
+       drop 
+       foreign key FKhsl975h3fmcssmrsnav0xp0be;
+
+    alter table identityiq.spt_identity_req_item_attach 
+       drop 
+       foreign key FK9j07eg4emep4vaseaa779fatl;
+
+    alter table identityiq.spt_identity_req_item_attach 
+       drop 
+       foreign key FK32c6p6xsumvu31gciybgj93f8;
+
+    alter table identityiq.spt_right 
+       drop 
+       foreign key FKloubwfokw065ojaeb71h1oa3t;
+
+    alter table identityiq.spt_right 
+       drop 
+       foreign key FK7xk9w0l2a9p6c0nk9vfdlgyty;
+
+    alter table identityiq.spt_sync_roles 
+       drop 
+       foreign key FKh7gqwjigw9iepfoix8tu2u0s1;
+
+    alter table identityiq.spt_sync_roles 
+       drop 
+       foreign key FKda7requ6nyli1ya6k205cvd9o;
+
+    alter table identityiq.spt_tag 
+       drop 
+       foreign key FKmgrthcu01wv36q32tftwjeqhl;
+
+    alter table identityiq.spt_tag 
+       drop 
+       foreign key FK12ckbtpjb7t24wtg5p8mfjcks;
+
+    alter table identityiq.spt_target 
+       drop 
+       foreign key FKey1ldelkwgfnih0bfqsxdy54w;
+
+    alter table identityiq.spt_target 
+       drop 
+       foreign key FKpod5pba81d9huchum3nsgmpta;
+
+    alter table identityiq.spt_target 
+       drop 
+       foreign key FKai0hmu3219oowiyrjm6ejvh9n;
+
+    alter table identityiq.spt_target 
+       drop 
+       foreign key FKb3tg6yji6uf5blcn269udqlc7;
+
+    alter table identityiq.spt_target 
+       drop 
+       foreign key FKn6mv8xwf0vmk1boohfqq13gyy;
+
+    alter table identityiq.spt_target_association 
+       drop 
+       foreign key FKqxsb4h4ti40gf0t8ljtscryya;
+
+    alter table identityiq.spt_target_association 
+       drop 
+       foreign key FKacuykan45qff45db9sj11osbl;
+
+    alter table identityiq.spt_target_association 
+       drop 
+       foreign key FKhb5il4oxcsn64hbdebuinih52;
+
+    alter table identityiq.spt_target_source 
+       drop 
+       foreign key FKj89r4te5s353ptcfnd2d7q5u8;
+
+    alter table identityiq.spt_target_source 
+       drop 
+       foreign key FKrnt6pd9p8kkfv61w0330xhib6;
+
+    alter table identityiq.spt_target_source 
+       drop 
+       foreign key FK2j9mi5mcplk3qdb3j0fs4id0t;
+
+    alter table identityiq.spt_target_source 
+       drop 
+       foreign key FKiu2mtbwoueit24pmdr3lhjrk6;
+
+    alter table identityiq.spt_target_source 
+       drop 
+       foreign key FK777oa2vyijp2mq02nuosr81rj;
+
+    alter table identityiq.spt_target_source 
+       drop 
+       foreign key FKrtx5xfiieasobegbhbn9i6f2q;
+
+    alter table identityiq.spt_target_sources 
+       drop 
+       foreign key FKeoqgr9sni7dx3wv0jo0kurppy;
+
+    alter table identityiq.spt_target_sources 
+       drop 
+       foreign key FK40hwxe8hphgbyoudtsmolx954;
+
+    alter table identityiq.spt_task_definition 
+       drop 
+       foreign key FKj73ffat8whj2sjle6vcnmit5s;
+
+    alter table identityiq.spt_task_definition 
+       drop 
+       foreign key FKijib486kukyyjtf2i4jl4r8x7;
+
+    alter table identityiq.spt_task_definition 
+       drop 
+       foreign key FK186b24jneods52l19ovut3k25;
+
+    alter table identityiq.spt_task_definition 
+       drop 
+       foreign key FKq967ll6qee151kju0h7uwn0sj;
+
+    alter table identityiq.spt_task_definition_rights 
+       drop 
+       foreign key FK9ah4pq0yle4556apcis8agx3w;
+
+    alter table identityiq.spt_task_definition_rights 
+       drop 
+       foreign key FKf7c9o0fl64otsf323bw9lmq3l;
+
+    alter table identityiq.spt_task_event 
+       drop 
+       foreign key FKdr9qfdwq639526kr0s8sn7bsv;
+
+    alter table identityiq.spt_task_event 
+       drop 
+       foreign key FK37pe16gm4jk5rq0iqhoxu1flp;
+
+    alter table identityiq.spt_task_event 
+       drop 
+       foreign key FKjbek8dno75kki81omnix1vn8e;
+
+    alter table identityiq.spt_task_event 
+       drop 
+       foreign key FKsvucgoph5pot9sayepcakum3t;
+
+    alter table identityiq.spt_task_result 
+       drop 
+       foreign key FK92o7l61ctqgwtb3hnpk8m6nsi;
+
+    alter table identityiq.spt_task_result 
+       drop 
+       foreign key FKc3i98bcpobratwtdvynrb0d8p;
+
+    alter table identityiq.spt_task_result 
+       drop 
+       foreign key FKgv5931h4qht8l60ds42fhay5n;
+
+    alter table identityiq.spt_task_result 
+       drop 
+       foreign key FKhmia6kghdf1stidg0tjawwrqh;
+
+    alter table identityiq.spt_task_signature_arguments 
+       drop 
+       foreign key FK6lxnqcijv324bs8sgqjaclh84;
+
+    alter table identityiq.spt_task_signature_returns 
+       drop 
+       foreign key FKo0dpi7g348h1boy75cfec0khg;
+
+    alter table identityiq.spt_time_period 
+       drop 
+       foreign key FKm868jhewgm53i6bl4y59nbefl;
+
+    alter table identityiq.spt_time_period 
+       drop 
+       foreign key FKgrcbpbx476sf3yc5jq81wh0se;
+
+    alter table identityiq.spt_uiconfig 
+       drop 
+       foreign key FK16y8ue1ela4vu4nww3kswhtji;
+
+    alter table identityiq.spt_uiconfig 
+       drop 
+       foreign key FKqj3gj76e5girakxi3nejkch3s;
+
+    alter table identityiq.spt_uipreferences 
+       drop 
+       foreign key FK5rj3vu68py43jjx519hqwnh3t;
+
+    alter table identityiq.spt_widget 
+       drop 
+       foreign key FKi51uo1quso8fdclqgeoj1q5hq;
+
+    alter table identityiq.spt_widget 
+       drop 
+       foreign key FK7tc8b6i3k86o36mru85lyhw3p;
+
+    alter table identityiq.spt_workflow 
+       drop 
+       foreign key FKyvogiw1fu3oegof5fxs2vku8;
+
+    alter table identityiq.spt_workflow 
+       drop 
+       foreign key FK1i4qorrnciecvgdvblwrp125e;
+
+    alter table identityiq.spt_workflow_rule_libraries 
+       drop 
+       foreign key FKc3ft08r09xw4cwx2tqqnevcxp;
+
+    alter table identityiq.spt_workflow_rule_libraries 
+       drop 
+       foreign key FKec9mwyk8lv87b7fknm22ax1by;
+
+    alter table identityiq.spt_workflow_case 
+       drop 
+       foreign key FK3u37v00ff74e4vm5plubtlqx1;
+
+    alter table identityiq.spt_workflow_case 
+       drop 
+       foreign key FKklde6fd36kr42tbcep5f16dj9;
+
+    alter table identityiq.spt_workflow_registry 
+       drop 
+       foreign key FK46n0i40i7596wrm4r19mkf95o;
+
+    alter table identityiq.spt_workflow_registry 
+       drop 
+       foreign key FKg1y46rf6jkacnl8vtiie6wp5i;
+
+    alter table identityiq.spt_workflow_target 
+       drop 
+       foreign key FKnhcve6g96fyukhtjqu5utjf16;
+
+    alter table identityiq.spt_workflow_target 
+       drop 
+       foreign key FKjngjkgjmpbwwn9utpq60r7lid;
+
+    alter table identityiq.spt_workflow_target 
+       drop 
+       foreign key FKj7uvhprilx2f9fb2u5bcoixwj;
+
+    alter table identityiq.spt_work_item 
+       drop 
+       foreign key FK2arasbenw5pc3vrsnwvxqmc1n;
+
+    alter table identityiq.spt_work_item 
+       drop 
+       foreign key FKaqhklr6jna0canhsmjv6q3ttv;
+
+    alter table identityiq.spt_work_item 
+       drop 
+       foreign key FKgkr4i2su940s244kebgc1f4ak;
+
+    alter table identityiq.spt_work_item 
+       drop 
+       foreign key FKb5kty2abf9yebckhbo6vqjv2l;
+
+    alter table identityiq.spt_work_item 
+       drop 
+       foreign key FKnq8ngnioi09kpss4md9jkr4dq;
+
+    alter table identityiq.spt_work_item 
+       drop 
+       foreign key FK77ut3s987e5m9gcoj1yi7ifvo;
+
+    alter table identityiq.spt_work_item_comments 
+       drop 
+       foreign key FKrcoqbshrurwy6exnqljnk9147;
+
+    alter table identityiq.spt_work_item_archive 
+       drop 
+       foreign key FKi7l692hi3ind4q445liu4vnjt;
+
+    alter table identityiq.spt_work_item_archive 
+       drop 
+       foreign key FKr1av5cjgksel3fq0cop2449dm;
+
+    alter table identityiq.spt_work_item_config 
+       drop 
+       foreign key FKsaklnun9f7m1ur66reimsj0uh;
+
+    alter table identityiq.spt_work_item_config 
+       drop 
+       foreign key FKainfds5d2eyh6kt0nudndtjhq;
+
+    alter table identityiq.spt_work_item_config 
+       drop 
+       foreign key FK9fsd71n6x6rgg14g3ipecbei7;
+
+    alter table identityiq.spt_work_item_config 
+       drop 
+       foreign key FKml61l0hu4ipdc0uyusn0u0s4q;
+
+    alter table identityiq.spt_work_item_config 
+       drop 
+       foreign key FKlmrrs1xltdogce59jno83xvqv;
+
+    alter table identityiq.spt_work_item_config 
+       drop 
+       foreign key FK2p700iypxpxmrijecptg3bfc9;
+
+    alter table identityiq.spt_work_item_config 
+       drop 
+       foreign key FKobeui00a317gyix189atb3dt8;
+
+    alter table identityiq.spt_work_item_config 
+       drop 
+       foreign key FK8ya24kn74wr4rmd8ukl7vuv9d;
+
+    alter table identityiq.spt_work_item_owners 
+       drop 
+       foreign key FK4m6v8uagrglqptlephg9ecbm5;
+
+    alter table identityiq.spt_work_item_owners 
+       drop 
+       foreign key FKjpvcxuqhodero8m8cyucavel9;
+
+    drop table if exists identityiq.spt_account_group;
+
+    drop table if exists identityiq.spt_account_group_inheritance;
+
+    drop table if exists identityiq.spt_account_group_perms;
+
+    drop table if exists identityiq.spt_account_group_target_perms;
+
+    drop table if exists identityiq.spt_activity_constraint;
+
+    drop table if exists identityiq.spt_activity_data_source;
+
+    drop table if exists identityiq.spt_activity_time_periods;
+
+    drop table if exists identityiq.spt_alert;
+
+    drop table if exists identityiq.spt_alert_action;
+
+    drop table if exists identityiq.spt_alert_definition;
+
+    drop table if exists identityiq.spt_app_dependencies;
+
+    drop table if exists identityiq.spt_application;
+
+    drop table if exists identityiq.spt_application_remediators;
+
+    drop table if exists identityiq.spt_application_activity;
+
+    drop table if exists identityiq.spt_application_schema;
+
+    drop table if exists identityiq.spt_application_scorecard;
+
+    drop table if exists identityiq.spt_app_secondary_owners;
+
+    drop table if exists identityiq.spt_arch_cert_item_apps;
+
+    drop table if exists identityiq.spt_attachment;
+
+    drop table if exists identityiq.spt_audit_config;
+
+    drop table if exists identityiq.spt_audit_event;
+
+    drop table if exists identityiq.spt_authentication_answer;
+
+    drop table if exists identityiq.spt_authentication_question;
+
+    drop table if exists identityiq.spt_batch_request;
+
+    drop table if exists identityiq.spt_batch_request_item;
+
+    drop table if exists identityiq.spt_bulk_id_join;
+
+    drop table if exists identityiq.spt_bundle;
+
+    drop table if exists identityiq.spt_bundle_archive;
+
+    drop table if exists identityiq.spt_bundle_children;
+
+    drop table if exists identityiq.spt_bundle_permits;
+
+    drop table if exists identityiq.spt_bundle_profile_relation;
+
+    drop table if exists identityiq.spt_bundle_profile_relation_object;
+
+    drop table if exists identityiq.spt_bundle_profile_relation_step;
+
+    drop table if exists identityiq.spt_bundle_requirements;
+
+    drop table if exists identityiq.spt_capability;
+
+    drop table if exists identityiq.spt_capability_children;
+
+    drop table if exists identityiq.spt_capability_rights;
+
+    drop table if exists identityiq.spt_category;
+
+    drop table if exists identityiq.spt_cert_action_assoc;
+
+    drop table if exists identityiq.spt_certification;
+
+    drop table if exists identityiq.spt_certification_def_tags;
+
+    drop table if exists identityiq.spt_certification_groups;
+
+    drop table if exists identityiq.spt_certification_tags;
+
+    drop table if exists identityiq.spt_certification_action;
+
+    drop table if exists identityiq.spt_certification_archive;
+
+    drop table if exists identityiq.spt_certification_challenge;
+
+    drop table if exists identityiq.spt_certification_definition;
+
+    drop table if exists identityiq.spt_certification_delegation;
+
+    drop table if exists identityiq.spt_certification_entity;
+
+    drop table if exists identityiq.spt_certification_group;
+
+    drop table if exists identityiq.spt_certification_item;
+
+    drop table if exists identityiq.spt_certifiers;
+
+    drop table if exists identityiq.spt_cert_item_applications;
+
+    drop table if exists identityiq.spt_cert_item_classifications;
+
+    drop table if exists identityiq.spt_child_certification_ids;
+
+    drop table if exists identityiq.spt_classification;
+
+    drop table if exists identityiq.spt_cloud_access3way;
+
+    drop table if exists identityiq.spt_cloud_access_group;
+
+    drop table if exists identityiq.spt_cloud_access_role;
+
+    drop table if exists identityiq.spt_cloud_access_scope;
+
+    drop table if exists identityiq.spt_configuration;
+
+    drop table if exists identityiq.spt_correlation_config;
+
+    drop table if exists identityiq.spt_custom;
+
+    drop table if exists identityiq.spt_database_version;
+
+    drop table if exists identityiq.spt_deleted_object;
+
+    drop table if exists identityiq.spt_dictionary;
+
+    drop table if exists identityiq.spt_dictionary_term;
+
+    drop table if exists identityiq.spt_dynamic_scope;
+
+    drop table if exists identityiq.spt_dynamic_scope_exclusions;
+
+    drop table if exists identityiq.spt_dynamic_scope_inclusions;
+
+    drop table if exists identityiq.spt_email_template;
+
+    drop table if exists identityiq.spt_email_template_properties;
+
+    drop table if exists identityiq.spt_entitlement_group;
+
+    drop table if exists identityiq.spt_entitlement_snapshot;
+
+    drop table if exists identityiq.spt_file_bucket;
+
+    drop table if exists identityiq.spt_form;
+
+    drop table if exists identityiq.spt_full_text_index;
+
+    drop table if exists identityiq.spt_generic_constraint;
+
+    drop table if exists identityiq.spt_group_definition;
+
+    drop table if exists identityiq.spt_group_factory;
+
+    drop table if exists identityiq.spt_group_index;
+
+    drop table if exists identityiq.spt_group_permissions;
+
+    drop table if exists identityiq.spt_identity;
+
+    drop table if exists identityiq.spt_identity_archive;
+
+    drop table if exists identityiq.spt_identity_assigned_roles;
+
+    drop table if exists identityiq.spt_identity_bundles;
+
+    drop table if exists identityiq.spt_identity_capabilities;
+
+    drop table if exists identityiq.spt_identity_controlled_scopes;
+
+    drop table if exists identityiq.spt_identity_entitlement;
+
+    drop table if exists identityiq.spt_identity_external_attr;
+
+    drop table if exists identityiq.spt_identity_history_item;
+
+    drop table if exists identityiq.spt_identity_request;
+
+    drop table if exists identityiq.spt_identity_request_item;
+
+    drop table if exists identityiq.spt_identity_role_metadata;
+
+    drop table if exists identityiq.spt_identity_snapshot;
+
+    drop table if exists identityiq.spt_identity_trigger;
+
+    drop table if exists identityiq.spt_identity_workgroups;
+
+    drop table if exists identityiq.spt_integration_config;
+
+    drop table if exists identityiq.spt_jasper_files;
+
+    drop table if exists identityiq.spt_jasper_page_bucket;
+
+    drop table if exists identityiq.spt_jasper_result;
+
+    drop table if exists identityiq.spt_jasper_template;
+
+    drop table if exists identityiq.spt_link;
+
+    drop table if exists identityiq.spt_link_external_attr;
+
+    drop table if exists identityiq.spt_localized_attribute;
+
+    drop table if exists identityiq.spt_managed_attribute;
+
+    drop table if exists identityiq.spt_managed_attr_inheritance;
+
+    drop table if exists identityiq.spt_managed_attr_perms;
+
+    drop table if exists identityiq.spt_managed_attr_target_perms;
+
+    drop table if exists identityiq.spt_message_template;
+
+    drop table if exists identityiq.spt_mining_config;
+
+    drop table if exists identityiq.spt_mitigation_expiration;
+
+    drop table if exists identityiq.spt_module;
+
+    drop table if exists identityiq.spt_monitoring_statistic;
+
+    drop table if exists identityiq.spt_monitoring_statistic_tags;
+
+    drop table if exists identityiq.spt_native_identity_change_event;
+
+    drop table if exists identityiq.spt_object_classification;
+
+    drop table if exists identityiq.spt_object_config;
+
+    drop table if exists identityiq.spt_partition_result;
+
+    drop table if exists identityiq.spt_password_policy;
+
+    drop table if exists identityiq.spt_password_policy_holder;
+
+    drop table if exists identityiq.spt_persisted_file;
+
+    drop table if exists identityiq.spt_plugin;
+
+    drop table if exists identityiq.spt_policy;
+
+    drop table if exists identityiq.spt_policy_violation;
+
+    drop table if exists identityiq.spt_post_commit_notification_object;
+
+    drop table if exists identityiq.spt_process_log;
+
+    drop table if exists identityiq.spt_profile;
+
+    drop table if exists identityiq.spt_profile_constraints;
+
+    drop table if exists identityiq.spt_profile_permissions;
+
+    drop table if exists identityiq.spt_provisioning_request;
+
+    drop table if exists identityiq.spt_provisioning_transaction;
+
+    drop table if exists identityiq.spt_quick_link;
+
+    drop table if exists identityiq.spt_quick_link_options;
+
+    drop table if exists identityiq.spt_recommender_definition;
+
+    drop table if exists identityiq.spt_remediation_item;
+
+    drop table if exists identityiq.spt_remote_login_token;
+
+    drop table if exists identityiq.spt_request;
+
+    drop table if exists identityiq.spt_request_arguments;
+
+    drop table if exists identityiq.spt_request_definition;
+
+    drop table if exists identityiq.spt_request_definition_rights;
+
+    drop table if exists identityiq.spt_request_returns;
+
+    drop table if exists identityiq.spt_request_state;
+
+    drop table if exists identityiq.spt_resource_event;
+
+    drop table if exists identityiq.spt_right_config;
+
+    drop table if exists identityiq.spt_role_change_event;
+
+    drop table if exists identityiq.spt_role_index;
+
+    drop table if exists identityiq.spt_role_metadata;
+
+    drop table if exists identityiq.spt_role_mining_result;
+
+    drop table if exists identityiq.spt_role_scorecard;
+
+    drop table if exists identityiq.spt_rule;
+
+    drop table if exists identityiq.spt_rule_registry_callouts;
+
+    drop table if exists identityiq.spt_rule_dependencies;
+
+    drop table if exists identityiq.spt_rule_registry;
+
+    drop table if exists identityiq.spt_rule_signature_arguments;
+
+    drop table if exists identityiq.spt_rule_signature_returns;
+
+    drop table if exists identityiq.spt_samltoken;
+
+    drop table if exists identityiq.spt_schema_attributes;
+
+    drop table if exists identityiq.spt_scope;
+
+    drop table if exists identityiq.spt_scorecard;
+
+    drop table if exists identityiq.spt_score_config;
+
+    drop table if exists identityiq.spt_server;
+
+    drop table if exists identityiq.spt_server_statistic;
+
+    drop table if exists identityiq.spt_service_definition;
+
+    drop table if exists identityiq.spt_service_lock;
+
+    drop table if exists identityiq.spt_service_status;
+
+    drop table if exists identityiq.spt_sign_off_history;
+
+    drop table if exists identityiq.spt_snapshot_permissions;
+
+    drop table if exists identityiq.spt_sodconstraint;
+
+    drop table if exists identityiq.spt_sodconstraint_left;
+
+    drop table if exists identityiq.spt_sodconstraint_right;
+
+    drop table if exists identityiq.spt_archived_cert_entity;
+
+    drop table if exists identityiq.spt_archived_cert_item;
+
+    drop table if exists identityiq.spt_identity_req_item_attach;
+
+    drop table if exists identityiq.spt_pending_req_attach;
+
+    drop table if exists identityiq.spt_right;
+
+    drop table if exists identityiq.spt_sync_roles;
+
+    drop table if exists identityiq.spt_syslog_event;
+
+    drop table if exists identityiq.spt_tag;
+
+    drop table if exists identityiq.spt_target;
+
+    drop table if exists identityiq.spt_target_association;
+
+    drop table if exists identityiq.spt_target_source;
+
+    drop table if exists identityiq.spt_target_sources;
+
+    drop table if exists identityiq.spt_task_definition;
+
+    drop table if exists identityiq.spt_task_definition_rights;
+
+    drop table if exists identityiq.spt_task_event;
+
+    drop table if exists identityiq.spt_task_result;
+
+    drop table if exists identityiq.spt_task_signature_arguments;
+
+    drop table if exists identityiq.spt_task_signature_returns;
+
+    drop table if exists identityiq.spt_time_period;
+
+    drop table if exists identityiq.spt_uiconfig;
+
+    drop table if exists identityiq.spt_uipreferences;
+
+    drop table if exists identityiq.spt_widget;
+
+    drop table if exists identityiq.spt_workflow;
+
+    drop table if exists identityiq.spt_workflow_rule_libraries;
+
+    drop table if exists identityiq.spt_workflow_case;
+
+    drop table if exists identityiq.spt_workflow_registry;
+
+    drop table if exists identityiq.spt_workflow_target;
+
+    drop table if exists identityiq.spt_workflow_test_suite;
+
+    drop table if exists identityiq.spt_work_item;
+
+    drop table if exists identityiq.spt_work_item_comments;
+
+    drop table if exists identityiq.spt_work_item_archive;
+
+    drop table if exists identityiq.spt_work_item_config;
+
+    drop table if exists identityiq.spt_work_item_owners;
+
+    drop table if exists identityiq.spt_identity_request_sequence;
+
+    drop table if exists identityiq.spt_work_item_sequence;
+
+    drop table if exists identityiq.spt_syslog_event_sequence;
+
+    drop table if exists identityiq.spt_prv_trans_sequence;
+
+    drop table if exists identityiq.spt_alert_sequence;
+
+DROP USER 'identityiq'@'%'; 
+DROP USER 'identityiq'@'localhost';
+
+FLUSH PRIVILEGES;
+DROP DATABASE IF EXISTS identityiq;
+
+DROP USER 'identityiqPlugin'@'%'; 
+DROP USER 'identityiqPlugin'@'localhost'; 
+FLUSH PRIVILEGES;
+DROP DATABASE IF EXISTS identityiqPlugin;

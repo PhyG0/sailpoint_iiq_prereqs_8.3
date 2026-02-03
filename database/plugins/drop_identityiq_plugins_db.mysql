@@ -1,0 +1,5 @@
+
+DROP USER 'identityiqPlugin'@'%'; 
+DROP USER 'identityiqPlugin'@'localhost'; 
+FLUSH PRIVILEGES;
+DROP DATABASE IF EXISTS identityiqPlugin;

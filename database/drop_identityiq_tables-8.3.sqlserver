@@ -1,0 +1,2557 @@
+--
+-- This script is a SAMPLE and can be modified as appropriate by the
+-- customer.  If the create sample was changed, then the corresponding
+-- changes will need to be made here, too.
+--
+
+-- From the Quartz 1.5.2 Distribution
+-- IdentityIQ NOTE: Removed the [dbo]. prefix
+
+-- In your Quartz properties file, you'll need to set
+-- org.quartz.jobStore.driverDelegateClass = org.quartz.impl.jdbcjobstore.MSSQLDelegate
+
+USE identityiq
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'identityiq.[FK_QRTZ221_TRIGGERS_QRTZ221_JOB_DETAILS]') AND OBJECTPROPERTY(id, N'ISFOREIGNKEY') = 1)
+ALTER TABLE identityiq.[QRTZ221_TRIGGERS] DROP CONSTRAINT FK_QRTZ221_TRIGGERS_QRTZ221_JOB_DETAILS
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'identityiq.[FK_QRTZ221_CRON_TRIGGERS_QRTZ221_TRIGGERS]') AND OBJECTPROPERTY(id, N'ISFOREIGNKEY') = 1)
+ALTER TABLE identityiq.[QRTZ221_CRON_TRIGGERS] DROP CONSTRAINT FK_QRTZ221_CRON_TRIGGERS_QRTZ221_TRIGGERS
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'identityiq.[FK_QRTZ221_SIMPLE_TRIGGERS_QRTZ221_TRIGGERS]') AND OBJECTPROPERTY(id, N'ISFOREIGNKEY') = 1)
+ALTER TABLE identityiq.[QRTZ221_SIMPLE_TRIGGERS] DROP CONSTRAINT FK_QRTZ221_SIMPLE_TRIGGERS_QRTZ221_TRIGGERS
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'identityiq.[QRTZ221_CALENDARS]') AND OBJECTPROPERTY(id, N'ISUSERTABLE') = 1)
+DROP TABLE identityiq.[QRTZ221_CALENDARS]
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'identityiq.[QRTZ221_CRON_TRIGGERS]') AND OBJECTPROPERTY(id, N'ISUSERTABLE') = 1)
+DROP TABLE identityiq.[QRTZ221_CRON_TRIGGERS]
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'identityiq.[QRTZ221_BLOB_TRIGGERS]') AND OBJECTPROPERTY(id, N'ISUSERTABLE') = 1)
+DROP TABLE identityiq.[QRTZ221_BLOB_TRIGGERS]
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'identityiq.[QRTZ221_FIRED_TRIGGERS]') AND OBJECTPROPERTY(id, N'ISUSERTABLE') = 1)
+DROP TABLE identityiq.[QRTZ221_FIRED_TRIGGERS]
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'identityiq.[QRTZ221_PAUSED_TRIGGER_GRPS]') AND OBJECTPROPERTY(id, N'ISUSERTABLE') = 1)
+DROP TABLE identityiq.[QRTZ221_PAUSED_TRIGGER_GRPS]
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'identityiq.[QRTZ221_SCHEDULER_STATE]') AND OBJECTPROPERTY(id, N'ISUSERTABLE') = 1)
+DROP TABLE identityiq.[QRTZ221_SCHEDULER_STATE]
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'identityiq.[QRTZ221_LOCKS]') AND OBJECTPROPERTY(id, N'ISUSERTABLE') = 1)
+DROP TABLE identityiq.[QRTZ221_LOCKS]
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'identityiq.[QRTZ221_JOB_DETAILS]') AND OBJECTPROPERTY(id, N'ISUSERTABLE') = 1)
+DROP TABLE identityiq.[QRTZ221_JOB_DETAILS]
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'identityiq.[QRTZ221_SIMPLE_TRIGGERS]') AND OBJECTPROPERTY(id, N'ISUSERTABLE') = 1)
+DROP TABLE identityiq.[QRTZ221_SIMPLE_TRIGGERS]
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'identityiq.[QRTZ221_TRIGGERS]') AND OBJECTPROPERTY(id, N'ISUSERTABLE') = 1)
+DROP TABLE identityiq.[QRTZ221_TRIGGERS]
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'identityiq.[QRTZ221_SIMPROP_TRIGGERS]') AND OBJECTPROPERTY(id, N'ISUSERTABLE') = 1)
+DROP TABLE identityiq.[QRTZ221_SIMPROP_TRIGGERS]
+GO
+
+-- End Quartz configuration
+
+    alter table identityiq.spt_account_group 
+       drop constraint FK81npondqko61p2jbiurtiyjjh;
+    GO
+
+    alter table identityiq.spt_account_group 
+       drop constraint FK34oc5rgrwidh1xfn80u7hw6ty;
+    GO
+
+    alter table identityiq.spt_account_group 
+       drop constraint FKr2yvl55h4eygmk9g025u7knhg;
+    GO
+
+    alter table identityiq.spt_account_group_inheritance 
+       drop constraint FK37nc4s7oaae0og1ks6qawxw5v;
+    GO
+
+    alter table identityiq.spt_account_group_inheritance 
+       drop constraint FKmapn2o892qhdmaa1r4lemvgax;
+    GO
+
+    alter table identityiq.spt_account_group_perms 
+       drop constraint FKiapqdfk3kcuq5jv68yxi5x7tx;
+    GO
+
+    alter table identityiq.spt_account_group_target_perms 
+       drop constraint FK13f1jdxrqvk98rjhyw2nsywcj;
+    GO
+
+    alter table identityiq.spt_activity_constraint 
+       drop constraint FKh07lkkaqonsf23oaqaiiowgxa;
+    GO
+
+    alter table identityiq.spt_activity_constraint 
+       drop constraint FK84atg8et8jhm2q2xrbc8y3mmg;
+    GO
+
+    alter table identityiq.spt_activity_constraint 
+       drop constraint FK54edcjc3jxlcm0n4x49vwmqbr;
+    GO
+
+    alter table identityiq.spt_activity_constraint 
+       drop constraint FKi1i3q8kvh4ed7e734iwrmbkqp;
+    GO
+
+    alter table identityiq.spt_activity_constraint 
+       drop constraint FKe1iukekxihoxdeji16gk4540c;
+    GO
+
+    alter table identityiq.spt_activity_data_source 
+       drop constraint FK4nyoyf6fj2n0iqv4x6hy3p5a0;
+    GO
+
+    alter table identityiq.spt_activity_data_source 
+       drop constraint FK9xs1b8n9mbigik443n155ils7;
+    GO
+
+    alter table identityiq.spt_activity_data_source 
+       drop constraint FKa7oof6hhnyj73cgy991qj4159;
+    GO
+
+    alter table identityiq.spt_activity_data_source 
+       drop constraint FK4t11m9gcjjxe4uhtlkab3mkh4;
+    GO
+
+    alter table identityiq.spt_activity_data_source 
+       drop constraint FKqh1mk9ywu09wfephle51xm9j;
+    GO
+
+    alter table identityiq.spt_activity_time_periods 
+       drop constraint FKdf7oxva0h2xktfgb8ro54gd5;
+    GO
+
+    alter table identityiq.spt_activity_time_periods 
+       drop constraint FKbxg0qs6lvogays6vb2niyqgjk;
+    GO
+
+    alter table identityiq.spt_alert 
+       drop constraint FKjpmc8vdbv8mso3deakv8qi5dd;
+    GO
+
+    alter table identityiq.spt_alert_action 
+       drop constraint FK4kt6nnjdocmdkgcv3wgdfvfyg;
+    GO
+
+    alter table identityiq.spt_alert_definition 
+       drop constraint FKm2f36vhlf1u9vnf5w1rm21i0q;
+    GO
+
+    alter table identityiq.spt_alert_definition 
+       drop constraint FK7nrecpxk2mr7mwgli5tk5kiq9;
+    GO
+
+    alter table identityiq.spt_app_dependencies 
+       drop constraint FKg99wvor3c1wxfmvd1j1vekrk1;
+    GO
+
+    alter table identityiq.spt_app_dependencies 
+       drop constraint FKfimmxii9xcyjfmgd0489d2q61;
+    GO
+
+    alter table identityiq.spt_application 
+       drop constraint FKo50q3ykyumpddcaaokonvivah;
+    GO
+
+    alter table identityiq.spt_application 
+       drop constraint FKjrqhmrsoaxkmetjcd0y3vo09r;
+    GO
+
+    alter table identityiq.spt_application 
+       drop constraint FKr6orbi6gkpkds9hrhowsym3yy;
+    GO
+
+    alter table identityiq.spt_application 
+       drop constraint FKo2741mu93ute68xlirxg7ysja;
+    GO
+
+    alter table identityiq.spt_application 
+       drop constraint FKam9m6cw3jgye54ltd2xrnk818;
+    GO
+
+    alter table identityiq.spt_application 
+       drop constraint FK27agl8inv18vxa370rnhbss30;
+    GO
+
+    alter table identityiq.spt_application 
+       drop constraint FKntlbgo69p5yhm3litlje9798g;
+    GO
+
+    alter table identityiq.spt_application 
+       drop constraint FKinlcagndni6i9xdctdivcl2ne;
+    GO
+
+    alter table identityiq.spt_application 
+       drop constraint FKhwhrrykvnnguijemwxxd5sn8t;
+    GO
+
+    alter table identityiq.spt_application 
+       drop constraint FKpen32pdmnkn8icwjkusye7uul;
+    GO
+
+    alter table identityiq.spt_application 
+       drop constraint FKbdx986tnctokxdrqw8q77s5rm;
+    GO
+
+    alter table identityiq.spt_application_remediators 
+       drop constraint FK362oq0bg8kyjh8a8x6b870jkx;
+    GO
+
+    alter table identityiq.spt_application_remediators 
+       drop constraint FK8csqgw7ff1rb2f1y0gtl4nbcc;
+    GO
+
+    alter table identityiq.spt_application_activity 
+       drop constraint FKp0r4scrot0prnyokpjxt2649j;
+    GO
+
+    alter table identityiq.spt_application_schema 
+       drop constraint FKkd8l977v65omox0wln8f6j20u;
+    GO
+
+    alter table identityiq.spt_application_schema 
+       drop constraint FKl0g1ud8tainvo5qqgw0vsyum6;
+    GO
+
+    alter table identityiq.spt_application_schema 
+       drop constraint FK4sj1w1c5l3xn6dl2mbfmcgq95;
+    GO
+
+    alter table identityiq.spt_application_schema 
+       drop constraint FKcm5n6jy4gyawyrrv3ge1e7fqc;
+    GO
+
+    alter table identityiq.spt_application_schema 
+       drop constraint FKov3msut61m895vk42fljyh68i;
+    GO
+
+    alter table identityiq.spt_application_schema 
+       drop constraint FK78hblkspg3qrgy9uy4yh6amt2;
+    GO
+
+    alter table identityiq.spt_application_schema 
+       drop constraint FKd3sov5jd5q1tvg43bervh4isw;
+    GO
+
+    alter table identityiq.spt_application_scorecard 
+       drop constraint FKgq6j2537q2t6enu2ots2gwlug;
+    GO
+
+    alter table identityiq.spt_application_scorecard 
+       drop constraint FKd25itmjnbgivvbvknkbs4dko2;
+    GO
+
+    alter table identityiq.spt_application_scorecard 
+       drop constraint FKncvny5il4loprlf8ed4vkkm5o;
+    GO
+
+    alter table identityiq.spt_app_secondary_owners 
+       drop constraint FKre2f8vro021ipil4lgflrrx9p;
+    GO
+
+    alter table identityiq.spt_app_secondary_owners 
+       drop constraint FK5paly2u3hu7s3cnlx9er1tcfg;
+    GO
+
+    alter table identityiq.spt_arch_cert_item_apps 
+       drop constraint FKjsbh6q9006l09jd5qso3kyn33;
+    GO
+
+    alter table identityiq.spt_attachment 
+       drop constraint FKbyb94bn214vosuh3a9cr6ydi3;
+    GO
+
+    alter table identityiq.spt_attachment 
+       drop constraint FKn1iv5d2bgun4hh7gmnyqyl0u7;
+    GO
+
+    alter table identityiq.spt_audit_config 
+       drop constraint FKn99ngjtt90uu0e6osp4ben0k0;
+    GO
+
+    alter table identityiq.spt_audit_config 
+       drop constraint FKnbd331q7w6aqq9xs5d2wmi63u;
+    GO
+
+    alter table identityiq.spt_audit_event 
+       drop constraint FKhhxtrj41bo44qrvg1d0m5ytsy;
+    GO
+
+    alter table identityiq.spt_audit_event 
+       drop constraint FK98m5i7uik1q162vtvklx4uwxy;
+    GO
+
+    alter table identityiq.spt_authentication_answer 
+       drop constraint FKg7ahr1e8ce0qnpwy5ukybfdlc;
+    GO
+
+    alter table identityiq.spt_authentication_answer 
+       drop constraint FKeadtkbftr4xwev6djc6bt0crh;
+    GO
+
+    alter table identityiq.spt_authentication_answer 
+       drop constraint FKt1ogpk91rvbm8w1e532nocdif;
+    GO
+
+    alter table identityiq.spt_authentication_question 
+       drop constraint FKo1do8f67g11idf1a7147kjvvi;
+    GO
+
+    alter table identityiq.spt_authentication_question 
+       drop constraint FKhwy7jvglm1yvvhjej8npruff2;
+    GO
+
+    alter table identityiq.spt_batch_request 
+       drop constraint FKkv0v31yspj4ga5o9x6pigtmbk;
+    GO
+
+    alter table identityiq.spt_batch_request 
+       drop constraint FKmi63tgq6kqghkrypoin7pqh5a;
+    GO
+
+    alter table identityiq.spt_batch_request_item 
+       drop constraint FK4uxgxj681uaiqpw0qku9fu49p;
+    GO
+
+    alter table identityiq.spt_batch_request_item 
+       drop constraint FK8utyq880cffo95ui7mxr5tok8;
+    GO
+
+    alter table identityiq.spt_batch_request_item 
+       drop constraint FKocx3j2y8pqextntj6l74qvlcj;
+    GO
+
+    alter table identityiq.spt_bundle 
+       drop constraint FKo1g4dgf57gojmopj8cmavgxjk;
+    GO
+
+    alter table identityiq.spt_bundle 
+       drop constraint FKbke0asxsp6fxyv9i8ax4dfis0;
+    GO
+
+    alter table identityiq.spt_bundle 
+       drop constraint FKimfl4xyw45yyv2wvsq9ymploe;
+    GO
+
+    alter table identityiq.spt_bundle 
+       drop constraint FKg6aah205ahbj6cdnu067npuqn;
+    GO
+
+    alter table identityiq.spt_bundle 
+       drop constraint FKouwy1vyabs54byfgq0md6xg98;
+    GO
+
+    alter table identityiq.spt_bundle 
+       drop constraint FK8q7rqxa31n8e4byky2su1aul7;
+    GO
+
+    alter table identityiq.spt_bundle_archive 
+       drop constraint FK9ikprcio0wk332m95ja8i99nm;
+    GO
+
+    alter table identityiq.spt_bundle_archive 
+       drop constraint FKsoj8lev1leryowpm7imnqq2g1;
+    GO
+
+    alter table identityiq.spt_bundle_children 
+       drop constraint FKb47g0894bupcgkm3ram9lepgi;
+    GO
+
+    alter table identityiq.spt_bundle_children 
+       drop constraint FKsislghstl6iawguwrnvx76rpk;
+    GO
+
+    alter table identityiq.spt_bundle_permits 
+       drop constraint FKi5wtu493fivl2kxblg9ei0f51;
+    GO
+
+    alter table identityiq.spt_bundle_permits 
+       drop constraint FKcclfiby5ny4jprvjkhd2wyy14;
+    GO
+
+    alter table identityiq.spt_bundle_profile_relation 
+       drop constraint FKmagmq7lgmic1artsln48lpcaw;
+    GO
+
+    alter table identityiq.spt_bundle_profile_relation_step 
+       drop constraint FK9ge6smvhp8n0fcl408e86tvia;
+    GO
+
+    alter table identityiq.spt_bundle_requirements 
+       drop constraint FKf5ff4s6ac2kr4tdan3hoxpogn;
+    GO
+
+    alter table identityiq.spt_bundle_requirements 
+       drop constraint FKmwhuhsy3pxr2qfitnua7s12rf;
+    GO
+
+    alter table identityiq.spt_capability 
+       drop constraint FKfc37j2eq2ue3bkwjujokswgwv;
+    GO
+
+    alter table identityiq.spt_capability 
+       drop constraint FKhw853kl2ued70sd1fofo2fo2f;
+    GO
+
+    alter table identityiq.spt_capability_children 
+       drop constraint FKcustr3gvq1r7v2dsv0635gyal;
+    GO
+
+    alter table identityiq.spt_capability_children 
+       drop constraint FKj5rdhd8hf7vrwg06pvvnewevy;
+    GO
+
+    alter table identityiq.spt_capability_rights 
+       drop constraint FK2ly05h392vp6y87sw157to4if;
+    GO
+
+    alter table identityiq.spt_capability_rights 
+       drop constraint FK5hked97sfwstl920p4xpbj7d9;
+    GO
+
+    alter table identityiq.spt_category 
+       drop constraint FK6ly2lvlw1x3co3kllh32w9it;
+    GO
+
+    alter table identityiq.spt_category 
+       drop constraint FKh9mqo4to3wcj85auwfd1v0vuq;
+    GO
+
+    alter table identityiq.spt_cert_action_assoc 
+       drop constraint FK7lf26b9a79fiq8ra40n6c9jox;
+    GO
+
+    alter table identityiq.spt_cert_action_assoc 
+       drop constraint FKimetcxjfnxeb3uxisl0re6h7c;
+    GO
+
+    alter table identityiq.spt_certification 
+       drop constraint FKkam40wtg536xdls5oxfov4o42;
+    GO
+
+    alter table identityiq.spt_certification 
+       drop constraint FKnqhv931l5n1bu20lpcqwplr6x;
+    GO
+
+    alter table identityiq.spt_certification 
+       drop constraint FKawqph0q6n3ikiqhhytcm8dnbe;
+    GO
+
+    alter table identityiq.spt_certification_def_tags 
+       drop constraint FKiqp17o6qbtywuq5xa0i7ftbdq;
+    GO
+
+    alter table identityiq.spt_certification_def_tags 
+       drop constraint FK874kcq4p7hyw2ai9h2ctm1olh;
+    GO
+
+    alter table identityiq.spt_certification_groups 
+       drop constraint FKex7xpxslou4ye7adrputklihy;
+    GO
+
+    alter table identityiq.spt_certification_groups 
+       drop constraint FKil0cc1sbmueu7oiptxr3j62px;
+    GO
+
+    alter table identityiq.spt_certification_tags 
+       drop constraint FK841eyy68p6495npv6dwpi04j0;
+    GO
+
+    alter table identityiq.spt_certification_tags 
+       drop constraint FKgpbsjaoc1wocq3euppijv9p15;
+    GO
+
+    alter table identityiq.spt_certification_action 
+       drop constraint FKi48dvgroqefpxtfa7pweh6o8b;
+    GO
+
+    alter table identityiq.spt_certification_action 
+       drop constraint FK6vi46tjqxbjj146o4o2g4nyfs;
+    GO
+
+    alter table identityiq.spt_certification_action 
+       drop constraint FKqfesh5gjixog7vmn3smfijoij;
+    GO
+
+    alter table identityiq.spt_certification_archive 
+       drop constraint FK1hkx6vis9eb73wy7c4pc1b8vf;
+    GO
+
+    alter table identityiq.spt_certification_archive 
+       drop constraint FK7mfm8h2b8nn9atr7qh5qly4l5;
+    GO
+
+    alter table identityiq.spt_certification_challenge 
+       drop constraint FKf7hyeykya823607fv2qvgdloe;
+    GO
+
+    alter table identityiq.spt_certification_challenge 
+       drop constraint FK22gq5pf504r23jw4knwce7xs5;
+    GO
+
+    alter table identityiq.spt_certification_definition 
+       drop constraint FKcr18syune0mkqk7ixr4jth5le;
+    GO
+
+    alter table identityiq.spt_certification_definition 
+       drop constraint FKgd080tua8dkp274bq1wapbb1a;
+    GO
+
+    alter table identityiq.spt_certification_delegation 
+       drop constraint FK23qqsi30cp25uv1am5yurcq0j;
+    GO
+
+    alter table identityiq.spt_certification_delegation 
+       drop constraint FKgxejqcvofo95foucj5vg4u3qs;
+    GO
+
+    alter table identityiq.spt_certification_entity 
+       drop constraint FKip367cn9lac3qe96fw0ccljd1;
+    GO
+
+    alter table identityiq.spt_certification_entity 
+       drop constraint FK_8ldyhh9o0vcq3n294rbfjs415;
+    GO
+
+    alter table identityiq.spt_certification_entity 
+       drop constraint FK_94kwlqdf1rlbuj6l25e71dg6c;
+    GO
+
+    alter table identityiq.spt_certification_entity 
+       drop constraint FK_4kgyc7xxjq27248f3cpe2hhu;
+    GO
+
+    alter table identityiq.spt_certification_entity 
+       drop constraint FK_hyixy5s22roljj5pk6ir6xd2p;
+    GO
+
+    alter table identityiq.spt_certification_group 
+       drop constraint FKlhja2iwhg5a62sq6f1buj2axo;
+    GO
+
+    alter table identityiq.spt_certification_group 
+       drop constraint FKqkcuv3m20nm9bgj5lp1f0pvae;
+    GO
+
+    alter table identityiq.spt_certification_group 
+       drop constraint FKkekr0ucddvo7a8l6gcrccuudg;
+    GO
+
+    alter table identityiq.spt_certification_item 
+       drop constraint FKlge6i5dbsbcsnxg6elephhq18;
+    GO
+
+    alter table identityiq.spt_certification_item 
+       drop constraint FKnwb5vj6hwftfgtl9f283rvsfg;
+    GO
+
+    alter table identityiq.spt_certification_item 
+       drop constraint FKns942qq8bd2upr6b66wbaiekj;
+    GO
+
+    alter table identityiq.spt_certification_item 
+       drop constraint FK_2bwhd2rbxp1nvs39jxf4dothm;
+    GO
+
+    alter table identityiq.spt_certification_item 
+       drop constraint FK_183ktprgvdwfefivf1699hd02;
+    GO
+
+    alter table identityiq.spt_certification_item 
+       drop constraint FK_sqwuid379j4nfp6ykmbacjrk;
+    GO
+
+    alter table identityiq.spt_certification_item 
+       drop constraint FK_1w71laay1l62qeujievv5l3gg;
+    GO
+
+    alter table identityiq.spt_certifiers 
+       drop constraint FKq2kybcv1awb6cte2q45gkupei;
+    GO
+
+    alter table identityiq.spt_cert_item_applications 
+       drop constraint FKmgki0koeep17cgfpir44de6mj;
+    GO
+
+    alter table identityiq.spt_cert_item_classifications 
+       drop constraint FK9dehgtst8bbi31palx2ygp8hi;
+    GO
+
+    alter table identityiq.spt_child_certification_ids 
+       drop constraint FK9syrav59593wgi39hrnt8kgk5;
+    GO
+
+    alter table identityiq.spt_cloud_access3way 
+       drop constraint FK25ss4xxt4e2nvwcd8ne1iw3b4;
+    GO
+
+    alter table identityiq.spt_cloud_access3way 
+       drop constraint FK6o7a9k31y9pc0xy7bd24uoqu5;
+    GO
+
+    alter table identityiq.spt_cloud_access3way 
+       drop constraint FKe65krw4kpvcduwmsp1mggynbg;
+    GO
+
+    alter table identityiq.spt_configuration 
+       drop constraint FKhjkwvbp3m63yllk6lbo4bqro7;
+    GO
+
+    alter table identityiq.spt_configuration 
+       drop constraint FKp90cf11ijtygd9hxlgyo0psaa;
+    GO
+
+    alter table identityiq.spt_correlation_config 
+       drop constraint FK8e7jfdj8slsjmmtl9saxefuep;
+    GO
+
+    alter table identityiq.spt_correlation_config 
+       drop constraint FKrguogs2r8ljaxdto8u4h3e9tk;
+    GO
+
+    alter table identityiq.spt_custom 
+       drop constraint FKn2tjdgfk4rvy3vosf1v3kac2t;
+    GO
+
+    alter table identityiq.spt_custom 
+       drop constraint FKlkx2x8fdy1rwhtnntacydwmek;
+    GO
+
+    alter table identityiq.spt_deleted_object 
+       drop constraint FK18xcbn9moxo06bcfyg6l7ggcy;
+    GO
+
+    alter table identityiq.spt_deleted_object 
+       drop constraint FK187408eyxdoomujowu44neqde;
+    GO
+
+    alter table identityiq.spt_deleted_object 
+       drop constraint FKe7dmgcmhkb13omi8dkh2ig89f;
+    GO
+
+    alter table identityiq.spt_dictionary 
+       drop constraint FKauca1novn79fd19aug3bjsqya;
+    GO
+
+    alter table identityiq.spt_dictionary 
+       drop constraint FK7kdy9g1knlowpv3v4rtn7w1py;
+    GO
+
+    alter table identityiq.spt_dictionary_term 
+       drop constraint FKcyplq38o2e3ajj515xs3vfrf3;
+    GO
+
+    alter table identityiq.spt_dictionary_term 
+       drop constraint FK1lnmjjwf7i80cupehvm066hdf;
+    GO
+
+    alter table identityiq.spt_dictionary_term 
+       drop constraint FKrtfr7u5wa0hngye2pixfgfjtq;
+    GO
+
+    alter table identityiq.spt_dynamic_scope 
+       drop constraint FKibw7yhehyvo75yf2gqp4nj5iq;
+    GO
+
+    alter table identityiq.spt_dynamic_scope 
+       drop constraint FKpygxoi3poo3klc46c5o72qe48;
+    GO
+
+    alter table identityiq.spt_dynamic_scope 
+       drop constraint FK1v3xd4m55jijgosuof9e6glj8;
+    GO
+
+    alter table identityiq.spt_dynamic_scope 
+       drop constraint FKcv5id4r7gnsso13xjubxaqnkp;
+    GO
+
+    alter table identityiq.spt_dynamic_scope 
+       drop constraint FKktwyfv8gvs56q5ilfuguki5l5;
+    GO
+
+    alter table identityiq.spt_dynamic_scope 
+       drop constraint FKtktdhh12wn2ah31yrges9oiu1;
+    GO
+
+    alter table identityiq.spt_dynamic_scope 
+       drop constraint FKexhlawv29rux6bct75f19h91v;
+    GO
+
+    alter table identityiq.spt_dynamic_scope 
+       drop constraint FK5qib64c7xdiovhut2k81054iu;
+    GO
+
+    alter table identityiq.spt_dynamic_scope_exclusions 
+       drop constraint FKrmu2wy5qkgpggwyvtlssi5ehk;
+    GO
+
+    alter table identityiq.spt_dynamic_scope_exclusions 
+       drop constraint FK6y9ox5g2qxpgjp2jp69qqsj1g;
+    GO
+
+    alter table identityiq.spt_dynamic_scope_inclusions 
+       drop constraint FK3ggbccvk2ambqjdw8iynyt965;
+    GO
+
+    alter table identityiq.spt_dynamic_scope_inclusions 
+       drop constraint FKol4cq5u3jcqik19amte10slgr;
+    GO
+
+    alter table identityiq.spt_email_template 
+       drop constraint FKbgbd2hiyxohe6mp0wks9w7i6m;
+    GO
+
+    alter table identityiq.spt_email_template 
+       drop constraint FKnn3hbn1pd7e492186rskdwd3c;
+    GO
+
+    alter table identityiq.spt_email_template_properties 
+       drop constraint emailtemplateproperties;
+    GO
+
+    alter table identityiq.spt_entitlement_group 
+       drop constraint FKhejppx2y8jb7gn2f5kow3rd4s;
+    GO
+
+    alter table identityiq.spt_entitlement_group 
+       drop constraint FKtckmuosehsos4esc6e7aw96x2;
+    GO
+
+    alter table identityiq.spt_entitlement_group 
+       drop constraint FKkgvp9pnx75witsnhfhmi2j3e;
+    GO
+
+    alter table identityiq.spt_entitlement_group 
+       drop constraint FK2r4pe9yr6ieul6o7j3gbh4ek4;
+    GO
+
+    alter table identityiq.spt_entitlement_snapshot 
+       drop constraint FKg28gich6xc717ufitfs9b7ho8;
+    GO
+
+    alter table identityiq.spt_file_bucket 
+       drop constraint FK4j1imfpmt238fhglhfh95rrs8;
+    GO
+
+    alter table identityiq.spt_file_bucket 
+       drop constraint FKaw7g3a6la8gky8coehtta2u32;
+    GO
+
+    alter table identityiq.spt_file_bucket 
+       drop constraint FK59ymu1g5ld3l6j97mx7uq0jfb;
+    GO
+
+    alter table identityiq.spt_form 
+       drop constraint FKblc1wv6n85ie3ajioskbhtb87;
+    GO
+
+    alter table identityiq.spt_form 
+       drop constraint FK7j84f82idyeb2pu1giatg6b00;
+    GO
+
+    alter table identityiq.spt_form 
+       drop constraint FKrwbs6jyeoe0f24q9u878kktna;
+    GO
+
+    alter table identityiq.spt_generic_constraint 
+       drop constraint FK2vhfe3qafdd3ok28mm1h90om9;
+    GO
+
+    alter table identityiq.spt_generic_constraint 
+       drop constraint FKi7nk6nu4vkvasene3f14mnykm;
+    GO
+
+    alter table identityiq.spt_generic_constraint 
+       drop constraint FKkthxi9af57y8xjm6pps9h8lr4;
+    GO
+
+    alter table identityiq.spt_generic_constraint 
+       drop constraint FKedawydx5t9h0xmnps51w6krpb;
+    GO
+
+    alter table identityiq.spt_generic_constraint 
+       drop constraint FK6oqb9qqui7wajajasxflcfcnb;
+    GO
+
+    alter table identityiq.spt_group_definition 
+       drop constraint FKku7t8vcce9maxmpgh025h8rpm;
+    GO
+
+    alter table identityiq.spt_group_definition 
+       drop constraint FKgpkyterj8orw9ue1ecnaxcxac;
+    GO
+
+    alter table identityiq.spt_group_definition 
+       drop constraint FKsswaiwl9wgq1x7x66w7dw73sr;
+    GO
+
+    alter table identityiq.spt_group_definition 
+       drop constraint FKhxm0nnx7gf472ykocqgl9yxne;
+    GO
+
+    alter table identityiq.spt_group_factory 
+       drop constraint FKh274opn41khwnbi0yj2n37ftm;
+    GO
+
+    alter table identityiq.spt_group_factory 
+       drop constraint FK4l56xl5r807s9o9clecfa83sp;
+    GO
+
+    alter table identityiq.spt_group_factory 
+       drop constraint FKhbdh4oyxsx9mqfsnvk57vqotk;
+    GO
+
+    alter table identityiq.spt_group_index 
+       drop constraint FKf94ksv2vpcmefy7dtedsr4d8i;
+    GO
+
+    alter table identityiq.spt_group_index 
+       drop constraint FKqvs2uruibvlbl9he3319jiy67;
+    GO
+
+    alter table identityiq.spt_group_index 
+       drop constraint FKk8c1wd9ht5mtgdkgr6w2pwx07;
+    GO
+
+    alter table identityiq.spt_group_permissions 
+       drop constraint FKcratih77tg9y9028xrpsiy0x5;
+    GO
+
+    alter table identityiq.spt_identity 
+       drop constraint FKdco8at7cn3mnhjf6xaahalooj;
+    GO
+
+    alter table identityiq.spt_identity 
+       drop constraint FKikbm1x7vdijclac4vu15u5ovv;
+    GO
+
+    alter table identityiq.spt_identity 
+       drop constraint FKoq0aevty64ohgu1m3y5n2odfb;
+    GO
+
+    alter table identityiq.spt_identity 
+       drop constraint FKkpuohy1m4u7hhicokkoixnh3v;
+    GO
+
+    alter table identityiq.spt_identity 
+       drop constraint FK6yjqfgtb1teavu30xemwke50h;
+    GO
+
+    alter table identityiq.spt_identity 
+       drop constraint FK996is5ceoc7ssc7n0cfgavp1n;
+    GO
+
+    alter table identityiq.spt_identity 
+       drop constraint FKl62tfosnxhkn8al4i5m098g6l;
+    GO
+
+    alter table identityiq.spt_identity 
+       drop constraint FK7l1j3c1e9yne2d7ercls5w169;
+    GO
+
+    alter table identityiq.spt_identity 
+       drop constraint FK6erec9yefdkhc6gj4g6wpufv9;
+    GO
+
+    alter table identityiq.spt_identity 
+       drop constraint FK8ro3qhcvypwaofa3yrnal3fsi;
+    GO
+
+    alter table identityiq.spt_identity 
+       drop constraint FKaw4ye4m198dibbj2atxjg85m7;
+    GO
+
+    alter table identityiq.spt_identity_archive 
+       drop constraint FKp8j75f2pk9xvqyimweu32w6f8;
+    GO
+
+    alter table identityiq.spt_identity_archive 
+       drop constraint FKmridtwmjtph1265lllya9w2mn;
+    GO
+
+    alter table identityiq.spt_identity_assigned_roles 
+       drop constraint FKheohgr0xuxklx9sfhjde58ig9;
+    GO
+
+    alter table identityiq.spt_identity_assigned_roles 
+       drop constraint FKf367abg77497pwgtr61co5mc;
+    GO
+
+    alter table identityiq.spt_identity_bundles 
+       drop constraint FKmr5pwrd4ysq4uiy970s0gpija;
+    GO
+
+    alter table identityiq.spt_identity_bundles 
+       drop constraint FKcuq8yi3rh1dxbbr7nt33io0h4;
+    GO
+
+    alter table identityiq.spt_identity_capabilities 
+       drop constraint FK8rvftn57xdt7vtg3oe2i3bn7i;
+    GO
+
+    alter table identityiq.spt_identity_capabilities 
+       drop constraint FKe9bo37xbckkaq2k85omvmo9ld;
+    GO
+
+    alter table identityiq.spt_identity_controlled_scopes 
+       drop constraint FKoahj6hw5kk9163bfes49lvasv;
+    GO
+
+    alter table identityiq.spt_identity_controlled_scopes 
+       drop constraint FKqjnmhlsld4pvlix9kbrvlmsb1;
+    GO
+
+    alter table identityiq.spt_identity_entitlement 
+       drop constraint FKlnoli5e2k3cofry0kh5lqwvk2;
+    GO
+
+    alter table identityiq.spt_identity_entitlement 
+       drop constraint FKqy3hyiptyuoo0ik8nfewymdio;
+    GO
+
+    alter table identityiq.spt_identity_entitlement 
+       drop constraint FKjief1jwgixlilqiqsvkpx0k9e;
+    GO
+
+    alter table identityiq.spt_identity_entitlement 
+       drop constraint FK9p3id5o2as2stlq47md58fm3b;
+    GO
+
+    alter table identityiq.spt_identity_entitlement 
+       drop constraint FKcn0l4kl1lpjkg7usf4okua4d8;
+    GO
+
+    alter table identityiq.spt_identity_entitlement 
+       drop constraint FKbpm8wgk9stf16g8w9ujx10qw3;
+    GO
+
+    alter table identityiq.spt_identity_entitlement 
+       drop constraint FK6cwcsuwgv6ydwqpnm6jto062q;
+    GO
+
+    alter table identityiq.spt_identity_history_item 
+       drop constraint FKji55d6komkmaodbat8ykt27ut;
+    GO
+
+    alter table identityiq.spt_identity_history_item 
+       drop constraint FKa9cu5shr2oefnkrrew96b98nc;
+    GO
+
+    alter table identityiq.spt_identity_request 
+       drop constraint FKrnecq87gn8rjrj2vbn9koxwc1;
+    GO
+
+    alter table identityiq.spt_identity_request 
+       drop constraint FKpstoy7u3dse9pl2h5ryub6h0w;
+    GO
+
+    alter table identityiq.spt_identity_request_item 
+       drop constraint FKdrgm0omo927u9hkgtx0m4rbmb;
+    GO
+
+    alter table identityiq.spt_identity_request_item 
+       drop constraint FKfax65ddwd2dwvkt9rsdqthshd;
+    GO
+
+    alter table identityiq.spt_identity_role_metadata 
+       drop constraint FKlbwupgie8o3gpjt857djjipg9;
+    GO
+
+    alter table identityiq.spt_identity_role_metadata 
+       drop constraint FKptvypo1q0ekqnlnt7tkl1u2na;
+    GO
+
+    alter table identityiq.spt_identity_snapshot 
+       drop constraint FKh03yxqsq7ebvwlwcthihtym07;
+    GO
+
+    alter table identityiq.spt_identity_snapshot 
+       drop constraint FKj24y3i8my2r0c3il58dlww3fa;
+    GO
+
+    alter table identityiq.spt_identity_trigger 
+       drop constraint FKaoupv62m0yus73314iwn0fclq;
+    GO
+
+    alter table identityiq.spt_identity_trigger 
+       drop constraint FK6est6a8xpuhjgqv7b0d8yvmal;
+    GO
+
+    alter table identityiq.spt_identity_trigger 
+       drop constraint FK4yqufhetuoj6wig3t5n5rw7xh;
+    GO
+
+    alter table identityiq.spt_identity_workgroups 
+       drop constraint FKew5309x0hinshtjed2o9p4lu8;
+    GO
+
+    alter table identityiq.spt_identity_workgroups 
+       drop constraint FKdubcl4txlwq72y89p09vsokp3;
+    GO
+
+    alter table identityiq.spt_integration_config 
+       drop constraint FK9i40hwin9s24k40gf9jbcjmyg;
+    GO
+
+    alter table identityiq.spt_integration_config 
+       drop constraint FKkra0w53mfbawmb7tun0thw07j;
+    GO
+
+    alter table identityiq.spt_integration_config 
+       drop constraint FK4m8ag5j3ca0w07n396xv4ovlx;
+    GO
+
+    alter table identityiq.spt_integration_config 
+       drop constraint FKnn9f0lgf5ewip65a8t2mhi97u;
+    GO
+
+    alter table identityiq.spt_integration_config 
+       drop constraint FK7dcjq7gk21x6gl2w55r9rgnnq;
+    GO
+
+    alter table identityiq.spt_jasper_files 
+       drop constraint FKarvo68602qubbljqm974ejrao;
+    GO
+
+    alter table identityiq.spt_jasper_files 
+       drop constraint FK38q00anepn1enkf14vh5kt0p0;
+    GO
+
+    alter table identityiq.spt_jasper_page_bucket 
+       drop constraint FK7ajqlhkio1lj6deitro8rufr4;
+    GO
+
+    alter table identityiq.spt_jasper_page_bucket 
+       drop constraint FKebcpjeggovthx5rfslffvm06l;
+    GO
+
+    alter table identityiq.spt_jasper_result 
+       drop constraint FKaov2d8748uea72k8riblr9iw;
+    GO
+
+    alter table identityiq.spt_jasper_result 
+       drop constraint FK48lfhuwg00rdb7lu24q8iqemj;
+    GO
+
+    alter table identityiq.spt_jasper_template 
+       drop constraint FK9gqhh1f6h8uvb0ijwd2x8d3xd;
+    GO
+
+    alter table identityiq.spt_jasper_template 
+       drop constraint FKd7fy4u4sv1o5q0oen7ip2trng;
+    GO
+
+    alter table identityiq.spt_link 
+       drop constraint FKlt4unsy5cp7psyl716sjq527e;
+    GO
+
+    alter table identityiq.spt_link 
+       drop constraint FKg0l571s3kkovl1l5q24wsn5h2;
+    GO
+
+    alter table identityiq.spt_link 
+       drop constraint FK7do4oyl8j399aynq34dosvk6o;
+    GO
+
+    alter table identityiq.spt_link 
+       drop constraint FKsc0du71d7t0p5jx4sqbwlrtc7;
+    GO
+
+    alter table identityiq.spt_localized_attribute 
+       drop constraint FK4ahm8gyl5gwhj8d4qgbwyynv;
+    GO
+
+    alter table identityiq.spt_managed_attribute 
+       drop constraint FK3gb72xtjki5mp7uosqt8y4pvn;
+    GO
+
+    alter table identityiq.spt_managed_attribute 
+       drop constraint FKp22ur089e238refu7d4ey3vad;
+    GO
+
+    alter table identityiq.spt_managed_attribute 
+       drop constraint FKh34qiq4aglfffr9xwpik781vj;
+    GO
+
+    alter table identityiq.spt_managed_attr_inheritance 
+       drop constraint FK4ioitymnwqibnmecupdfuo3ri;
+    GO
+
+    alter table identityiq.spt_managed_attr_inheritance 
+       drop constraint FK5w1va2uar8ndocw86uxw22fyx;
+    GO
+
+    alter table identityiq.spt_managed_attr_perms 
+       drop constraint FKgb5h5u8b3v7q8thhsyw3a3x2d;
+    GO
+
+    alter table identityiq.spt_managed_attr_target_perms 
+       drop constraint FKgxeh9kjs3fstpnq4tp0cch0h7;
+    GO
+
+    alter table identityiq.spt_message_template 
+       drop constraint FKbhf643rsydyey69y4clalwes3;
+    GO
+
+    alter table identityiq.spt_message_template 
+       drop constraint FK93cucj6fysk1u4s1mggidhsjw;
+    GO
+
+    alter table identityiq.spt_mining_config 
+       drop constraint FKe2p3b82e1gpt5n75cfkj19573;
+    GO
+
+    alter table identityiq.spt_mining_config 
+       drop constraint FKo5ji502vpitlcnl4ie54trv3a;
+    GO
+
+    alter table identityiq.spt_mitigation_expiration 
+       drop constraint FKpym4olxxt5hvtw2h6h5qehsg5;
+    GO
+
+    alter table identityiq.spt_mitigation_expiration 
+       drop constraint FKnq1a0dvm762fk9tcucs5ro4h3;
+    GO
+
+    alter table identityiq.spt_mitigation_expiration 
+       drop constraint FKrp62md93f75jd1i1hof0pdr01;
+    GO
+
+    alter table identityiq.spt_mitigation_expiration 
+       drop constraint FKdk2mv4vumkj87erjys2ecjjqy;
+    GO
+
+    alter table identityiq.spt_monitoring_statistic 
+       drop constraint FK1oylxmpnab6ukcexs91d4d3ps;
+    GO
+
+    alter table identityiq.spt_monitoring_statistic 
+       drop constraint FK66fxpvt139gb5aghd369t0q1s;
+    GO
+
+    alter table identityiq.spt_monitoring_statistic_tags 
+       drop constraint FKa6efhhukixvrd4fucp8n3hrlm;
+    GO
+
+    alter table identityiq.spt_monitoring_statistic_tags 
+       drop constraint FKk900lsdj83sd0cp9o59evn9nj;
+    GO
+
+    alter table identityiq.spt_object_classification 
+       drop constraint FK4hfvqf5hc3a6rl944f4h171tn;
+    GO
+
+    alter table identityiq.spt_object_config 
+       drop constraint FKtcjesncjqdcd4inr41kpgpwaj;
+    GO
+
+    alter table identityiq.spt_object_config 
+       drop constraint FK1w6x1owivjjlgw0ojfk6aatm5;
+    GO
+
+    alter table identityiq.spt_partition_result 
+       drop constraint FK9fa80qf6up4eunpumew96wmxr;
+    GO
+
+    alter table identityiq.spt_partition_result 
+       drop constraint FKguaao9nkvy8wtshwdjls9qe17;
+    GO
+
+    alter table identityiq.spt_partition_result 
+       drop constraint FK9svig87lf8npttavcvalbuipb;
+    GO
+
+    alter table identityiq.spt_password_policy 
+       drop constraint FK15k2353b0bf4swvqkteyjutb8;
+    GO
+
+    alter table identityiq.spt_password_policy_holder 
+       drop constraint FK47skxwy6vwmh6qdkoo76gao8c;
+    GO
+
+    alter table identityiq.spt_password_policy_holder 
+       drop constraint FK4flfb6aud9uvwfhrdt228g7b7;
+    GO
+
+    alter table identityiq.spt_password_policy_holder 
+       drop constraint FKsa0togid3d2ers5l0u8p0xxcp;
+    GO
+
+    alter table identityiq.spt_persisted_file 
+       drop constraint FKay7i45q2li8p1lnvdybls0t3t;
+    GO
+
+    alter table identityiq.spt_persisted_file 
+       drop constraint FKlj0anhv8hg741lmn738bahrek;
+    GO
+
+    alter table identityiq.spt_plugin 
+       drop constraint FKr3gksq71itxj5f837unefrg31;
+    GO
+
+    alter table identityiq.spt_policy 
+       drop constraint FKij2xlldhccmq534sl8n6587od;
+    GO
+
+    alter table identityiq.spt_policy 
+       drop constraint FKoebw2yqhc4j26mx83v49qyw1n;
+    GO
+
+    alter table identityiq.spt_policy 
+       drop constraint FK3cfyso96b28h21yaml8hbc3xi;
+    GO
+
+    alter table identityiq.spt_policy 
+       drop constraint FKgsvi652nk5hayfr8kc7p5ydy;
+    GO
+
+    alter table identityiq.spt_policy_violation 
+       drop constraint FKgxlmr2yos1bq05bqb3kxjyhdy;
+    GO
+
+    alter table identityiq.spt_policy_violation 
+       drop constraint FKlfnu8q3fgqq6w8l9t0v15gsjb;
+    GO
+
+    alter table identityiq.spt_policy_violation 
+       drop constraint FKphiamrjv42wu7uw5tcsbexjyw;
+    GO
+
+    alter table identityiq.spt_policy_violation 
+       drop constraint FKcfjl95jng7hghpw478qqgajyn;
+    GO
+
+    alter table identityiq.spt_process_log 
+       drop constraint FK7ll5fatw1p90l1quxoovyijej;
+    GO
+
+    alter table identityiq.spt_process_log 
+       drop constraint FKtgm6rfk5nrdbjswf140ad6jir;
+    GO
+
+    alter table identityiq.spt_profile 
+       drop constraint FKm77hrlacp3ynlthagggqmq8mn;
+    GO
+
+    alter table identityiq.spt_profile 
+       drop constraint FKdpexklt6enpa3qq3tg34t2i72;
+    GO
+
+    alter table identityiq.spt_profile 
+       drop constraint FKb6xsupwlh8e9b6sxrsojaq107;
+    GO
+
+    alter table identityiq.spt_profile 
+       drop constraint FKh7gmx9te7hdnjh138f0ys70bb;
+    GO
+
+    alter table identityiq.spt_profile_constraints 
+       drop constraint FKfnwocslrb1d7i22e0eyyonvu6;
+    GO
+
+    alter table identityiq.spt_profile_permissions 
+       drop constraint FK9wkru2lsxssnhaus718md3f2o;
+    GO
+
+    alter table identityiq.spt_provisioning_request 
+       drop constraint FKb0jveyf9sv2e042bjarn190pq;
+    GO
+
+    alter table identityiq.spt_provisioning_request 
+       drop constraint FKgtk4uysamt32hwwqxrdnceodg;
+    GO
+
+    alter table identityiq.spt_provisioning_request 
+       drop constraint FKe06usqanbltc3jw079m568c9d;
+    GO
+
+    alter table identityiq.spt_quick_link 
+       drop constraint FKr34ji3ugpva0sp95usrgaooih;
+    GO
+
+    alter table identityiq.spt_quick_link 
+       drop constraint FK8ircuuuw7sidwf8xmatked859;
+    GO
+
+    alter table identityiq.spt_quick_link_options 
+       drop constraint FKr2janfsixof6pqahju9ab112u;
+    GO
+
+    alter table identityiq.spt_quick_link_options 
+       drop constraint FK159pqn1fd0ubpapm62cy37akd;
+    GO
+
+    alter table identityiq.spt_quick_link_options 
+       drop constraint FKihngfm8iqb21en8gyeebmpj7h;
+    GO
+
+    alter table identityiq.spt_remediation_item 
+       drop constraint FKfd9yg9q55msovcqueyjodr6ui;
+    GO
+
+    alter table identityiq.spt_remediation_item 
+       drop constraint FKhlirh9cempdr7546c4oegeska;
+    GO
+
+    alter table identityiq.spt_remediation_item 
+       drop constraint FK6bb5fufbeok63cycwmdv1h0b3;
+    GO
+
+    alter table identityiq.spt_remediation_item 
+       drop constraint FK1vhqs5ybkgm91lv51hdyj68va;
+    GO
+
+    alter table identityiq.spt_remote_login_token 
+       drop constraint FKe2ofoif1sjdi94r0rhwsc6aqg;
+    GO
+
+    alter table identityiq.spt_remote_login_token 
+       drop constraint FK57qeahvi3aybfwrgf2mft28b0;
+    GO
+
+    alter table identityiq.spt_request 
+       drop constraint FK4wuia2w4ylm95aja22jnw6upf;
+    GO
+
+    alter table identityiq.spt_request 
+       drop constraint FK1st2f3b62703t2anet5iykocf;
+    GO
+
+    alter table identityiq.spt_request 
+       drop constraint FK2oj2nqukawo2p60yiloa72li9;
+    GO
+
+    alter table identityiq.spt_request 
+       drop constraint FKgwavtgcmunyt6bx3fvka2a5t2;
+    GO
+
+    alter table identityiq.spt_request_arguments 
+       drop constraint FK113ggg7785j6vdwb9xham03dc;
+    GO
+
+    alter table identityiq.spt_request_definition 
+       drop constraint FKgao87b86v1y7mrylu96ow04en;
+    GO
+
+    alter table identityiq.spt_request_definition 
+       drop constraint FKhe297ysa9fn4dmdljoq54njbs;
+    GO
+
+    alter table identityiq.spt_request_definition 
+       drop constraint FK2ttetyvbubn1jvp2n9urb6m5v;
+    GO
+
+    alter table identityiq.spt_request_definition_rights 
+       drop constraint FKp94t40blskwg0fuh854lfml1s;
+    GO
+
+    alter table identityiq.spt_request_definition_rights 
+       drop constraint FK3drvcyrlgw6waricqagimmd8e;
+    GO
+
+    alter table identityiq.spt_request_returns 
+       drop constraint FKpbhfh39gtywh48gc1hlfgngox;
+    GO
+
+    alter table identityiq.spt_request_state 
+       drop constraint FKqqjbvp3qvso1sb1ca6ombgter;
+    GO
+
+    alter table identityiq.spt_resource_event 
+       drop constraint FKt1snjotqsqvmoubnwv5vtpri6;
+    GO
+
+    alter table identityiq.spt_right_config 
+       drop constraint FKt1r57dhmuc884wt2ymu101hde;
+    GO
+
+    alter table identityiq.spt_right_config 
+       drop constraint FKdx0b0oat38fxsye0jgg5ulu9k;
+    GO
+
+    alter table identityiq.spt_role_index 
+       drop constraint FKo7ho4tlthd9rr80looh1ooito;
+    GO
+
+    alter table identityiq.spt_role_index 
+       drop constraint FKf0j6gmnubunnb5h7kfe33awf9;
+    GO
+
+    alter table identityiq.spt_role_index 
+       drop constraint FKl988ko9bkq0epm8ktn25tqpru;
+    GO
+
+    alter table identityiq.spt_role_metadata 
+       drop constraint FKaa82j55vly3sm9ftky9obxd38;
+    GO
+
+    alter table identityiq.spt_role_metadata 
+       drop constraint FKt5qt571k5ftna1xswfi723tat;
+    GO
+
+    alter table identityiq.spt_role_metadata 
+       drop constraint FK78iwr88o7i8dt8ibvi3vusjq8;
+    GO
+
+    alter table identityiq.spt_role_mining_result 
+       drop constraint FKjpslqep9tigfo52crhjg3hf5v;
+    GO
+
+    alter table identityiq.spt_role_mining_result 
+       drop constraint FKtok5e8qk7b61q9h76g7h7pr86;
+    GO
+
+    alter table identityiq.spt_role_scorecard 
+       drop constraint FKt6yfcgq98ed4bfi5ky81wjwdf;
+    GO
+
+    alter table identityiq.spt_role_scorecard 
+       drop constraint FKqrtue6hcnlf6qyr5qm0vfpwfn;
+    GO
+
+    alter table identityiq.spt_role_scorecard 
+       drop constraint FK4uodpdnn6r77dbqqa4ifdqja3;
+    GO
+
+    alter table identityiq.spt_rule 
+       drop constraint FKebikrnbibarckvm36915k8dc7;
+    GO
+
+    alter table identityiq.spt_rule 
+       drop constraint FKe7tgffr3v5sd2q739bndc72wr;
+    GO
+
+    alter table identityiq.spt_rule_registry_callouts 
+       drop constraint FKiescqm7tqapb2r71sgdcy20jk;
+    GO
+
+    alter table identityiq.spt_rule_registry_callouts 
+       drop constraint FK8csco7epf6euipthxuj0awqjp;
+    GO
+
+    alter table identityiq.spt_rule_dependencies 
+       drop constraint FKbju0wunboll2jdihl7c4xa0no;
+    GO
+
+    alter table identityiq.spt_rule_dependencies 
+       drop constraint FKgvxim0ew7xui4cfpk0gibucxa;
+    GO
+
+    alter table identityiq.spt_rule_registry 
+       drop constraint FKlswclannoqopuaet63sct4p74;
+    GO
+
+    alter table identityiq.spt_rule_registry 
+       drop constraint FKthpyc5ikucmt8mbhdcr980ucg;
+    GO
+
+    alter table identityiq.spt_rule_signature_arguments 
+       drop constraint FKdys6el89un39n7cyqey0sbdtt;
+    GO
+
+    alter table identityiq.spt_rule_signature_returns 
+       drop constraint FKrbsto8otv99kfe9kgyij37iml;
+    GO
+
+    alter table identityiq.spt_schema_attributes 
+       drop constraint FKhl9i3n7y97lpqq98etsp4urds;
+    GO
+
+    alter table identityiq.spt_scope 
+       drop constraint FKht5d7wfgqvify7p0nag6egr2;
+    GO
+
+    alter table identityiq.spt_scope 
+       drop constraint FK984w9lkkhtcrm8ib3y6b2qj8;
+    GO
+
+    alter table identityiq.spt_scope 
+       drop constraint FKpmmdhx9itj086j9dnu8ydh6gx;
+    GO
+
+    alter table identityiq.spt_scorecard 
+       drop constraint FK4cgtntcjhmqgrb6fcgion7psd;
+    GO
+
+    alter table identityiq.spt_scorecard 
+       drop constraint FKjlaay4af9d847oiooq03nwrkb;
+    GO
+
+    alter table identityiq.spt_scorecard 
+       drop constraint FKhwgs2272xcw9kr4uobastkiqj;
+    GO
+
+    alter table identityiq.spt_score_config 
+       drop constraint FK58s5g8wnl1pd9ckev17xhlfif;
+    GO
+
+    alter table identityiq.spt_score_config 
+       drop constraint FKj2ff5smsk1haaiyo1w7q7pj99;
+    GO
+
+    alter table identityiq.spt_score_config 
+       drop constraint FKdct987qb7na0fe12fov9gtp90;
+    GO
+
+    alter table identityiq.spt_server_statistic 
+       drop constraint FKo4ubx9xkjeqxgnsil2kq8863b;
+    GO
+
+    alter table identityiq.spt_server_statistic 
+       drop constraint FK5q7ultbynm7wn0wki1a0vhse7;
+    GO
+
+    alter table identityiq.spt_service_lock 
+       drop constraint FKiq6v3rrxwrku71j0ghepn66p5;
+    GO
+
+    alter table identityiq.spt_service_status 
+       drop constraint FKanvkx3ughno0yc6s33p8px5cu;
+    GO
+
+    alter table identityiq.spt_sign_off_history 
+       drop constraint FKgltduyt883x1og6dkgpt9n0uj;
+    GO
+
+    alter table identityiq.spt_sign_off_history 
+       drop constraint FK2ipk68cdtj3e4p6u5cp3y3ojc;
+    GO
+
+    alter table identityiq.spt_sign_off_history 
+       drop constraint FKoqlo63ls25h06ufiwokvd8l9g;
+    GO
+
+    alter table identityiq.spt_snapshot_permissions 
+       drop constraint FKd1pddppbj51lje4diqtw7ycs0;
+    GO
+
+    alter table identityiq.spt_sodconstraint 
+       drop constraint FKl4mjpujrolswau1wcu0mhn5yr;
+    GO
+
+    alter table identityiq.spt_sodconstraint 
+       drop constraint FKkdcp13gq48ggdtye8pas782pb;
+    GO
+
+    alter table identityiq.spt_sodconstraint 
+       drop constraint FKaoh6dc5hnbdth3l5s5el0ysg1;
+    GO
+
+    alter table identityiq.spt_sodconstraint 
+       drop constraint FK4o50l0rmgaju9n8exvb3pdf5b;
+    GO
+
+    alter table identityiq.spt_sodconstraint 
+       drop constraint FKsb73wu7qhwhp6dsypgpor8dsi;
+    GO
+
+    alter table identityiq.spt_sodconstraint_left 
+       drop constraint FKiaye28ptj6gmsp4tflo13r0qy;
+    GO
+
+    alter table identityiq.spt_sodconstraint_left 
+       drop constraint FKihnxab3mjkx483ftgngk6g0h1;
+    GO
+
+    alter table identityiq.spt_sodconstraint_right 
+       drop constraint FK1k33mlfft6ir3ao0scmod2y0i;
+    GO
+
+    alter table identityiq.spt_sodconstraint_right 
+       drop constraint FKi4p81605xg3ojoycpm4lyfa85;
+    GO
+
+    alter table identityiq.spt_archived_cert_entity 
+       drop constraint FKt3lg6vlrrdfqy5xo76lb5p06x;
+    GO
+
+    alter table identityiq.spt_archived_cert_entity 
+       drop constraint FKo4mknf6x4lxygjwvgyoxu3me3;
+    GO
+
+    alter table identityiq.spt_archived_cert_entity 
+       drop constraint FK8salwd54pmcixneotwbg1e8t1;
+    GO
+
+    alter table identityiq.spt_archived_cert_item 
+       drop constraint FK877k5d95c04j14sdw91fyrnth;
+    GO
+
+    alter table identityiq.spt_archived_cert_item 
+       drop constraint FKhoc03daa5guh1iq2isa67wnrg;
+    GO
+
+    alter table identityiq.spt_archived_cert_item 
+       drop constraint FKhsl975h3fmcssmrsnav0xp0be;
+    GO
+
+    alter table identityiq.spt_identity_req_item_attach 
+       drop constraint FK9j07eg4emep4vaseaa779fatl;
+    GO
+
+    alter table identityiq.spt_identity_req_item_attach 
+       drop constraint FK32c6p6xsumvu31gciybgj93f8;
+    GO
+
+    alter table identityiq.spt_right 
+       drop constraint FKloubwfokw065ojaeb71h1oa3t;
+    GO
+
+    alter table identityiq.spt_right 
+       drop constraint FK7xk9w0l2a9p6c0nk9vfdlgyty;
+    GO
+
+    alter table identityiq.spt_sync_roles 
+       drop constraint FKh7gqwjigw9iepfoix8tu2u0s1;
+    GO
+
+    alter table identityiq.spt_sync_roles 
+       drop constraint FKda7requ6nyli1ya6k205cvd9o;
+    GO
+
+    alter table identityiq.spt_tag 
+       drop constraint FKmgrthcu01wv36q32tftwjeqhl;
+    GO
+
+    alter table identityiq.spt_tag 
+       drop constraint FK12ckbtpjb7t24wtg5p8mfjcks;
+    GO
+
+    alter table identityiq.spt_target 
+       drop constraint FKey1ldelkwgfnih0bfqsxdy54w;
+    GO
+
+    alter table identityiq.spt_target 
+       drop constraint FKpod5pba81d9huchum3nsgmpta;
+    GO
+
+    alter table identityiq.spt_target 
+       drop constraint FKai0hmu3219oowiyrjm6ejvh9n;
+    GO
+
+    alter table identityiq.spt_target 
+       drop constraint FKb3tg6yji6uf5blcn269udqlc7;
+    GO
+
+    alter table identityiq.spt_target 
+       drop constraint FKn6mv8xwf0vmk1boohfqq13gyy;
+    GO
+
+    alter table identityiq.spt_target_association 
+       drop constraint FKqxsb4h4ti40gf0t8ljtscryya;
+    GO
+
+    alter table identityiq.spt_target_association 
+       drop constraint FKacuykan45qff45db9sj11osbl;
+    GO
+
+    alter table identityiq.spt_target_association 
+       drop constraint FKhb5il4oxcsn64hbdebuinih52;
+    GO
+
+    alter table identityiq.spt_target_source 
+       drop constraint FKj89r4te5s353ptcfnd2d7q5u8;
+    GO
+
+    alter table identityiq.spt_target_source 
+       drop constraint FKrnt6pd9p8kkfv61w0330xhib6;
+    GO
+
+    alter table identityiq.spt_target_source 
+       drop constraint FK2j9mi5mcplk3qdb3j0fs4id0t;
+    GO
+
+    alter table identityiq.spt_target_source 
+       drop constraint FKiu2mtbwoueit24pmdr3lhjrk6;
+    GO
+
+    alter table identityiq.spt_target_source 
+       drop constraint FK777oa2vyijp2mq02nuosr81rj;
+    GO
+
+    alter table identityiq.spt_target_source 
+       drop constraint FKrtx5xfiieasobegbhbn9i6f2q;
+    GO
+
+    alter table identityiq.spt_target_sources 
+       drop constraint FKeoqgr9sni7dx3wv0jo0kurppy;
+    GO
+
+    alter table identityiq.spt_target_sources 
+       drop constraint FK40hwxe8hphgbyoudtsmolx954;
+    GO
+
+    alter table identityiq.spt_task_definition 
+       drop constraint FKj73ffat8whj2sjle6vcnmit5s;
+    GO
+
+    alter table identityiq.spt_task_definition 
+       drop constraint FKijib486kukyyjtf2i4jl4r8x7;
+    GO
+
+    alter table identityiq.spt_task_definition 
+       drop constraint FK186b24jneods52l19ovut3k25;
+    GO
+
+    alter table identityiq.spt_task_definition 
+       drop constraint FKq967ll6qee151kju0h7uwn0sj;
+    GO
+
+    alter table identityiq.spt_task_definition_rights 
+       drop constraint FK9ah4pq0yle4556apcis8agx3w;
+    GO
+
+    alter table identityiq.spt_task_definition_rights 
+       drop constraint FKf7c9o0fl64otsf323bw9lmq3l;
+    GO
+
+    alter table identityiq.spt_task_event 
+       drop constraint FKdr9qfdwq639526kr0s8sn7bsv;
+    GO
+
+    alter table identityiq.spt_task_event 
+       drop constraint FK37pe16gm4jk5rq0iqhoxu1flp;
+    GO
+
+    alter table identityiq.spt_task_event 
+       drop constraint FKjbek8dno75kki81omnix1vn8e;
+    GO
+
+    alter table identityiq.spt_task_event 
+       drop constraint FKsvucgoph5pot9sayepcakum3t;
+    GO
+
+    alter table identityiq.spt_task_result 
+       drop constraint FK92o7l61ctqgwtb3hnpk8m6nsi;
+    GO
+
+    alter table identityiq.spt_task_result 
+       drop constraint FKc3i98bcpobratwtdvynrb0d8p;
+    GO
+
+    alter table identityiq.spt_task_result 
+       drop constraint FKgv5931h4qht8l60ds42fhay5n;
+    GO
+
+    alter table identityiq.spt_task_result 
+       drop constraint FKhmia6kghdf1stidg0tjawwrqh;
+    GO
+
+    alter table identityiq.spt_task_signature_arguments 
+       drop constraint FK6lxnqcijv324bs8sgqjaclh84;
+    GO
+
+    alter table identityiq.spt_task_signature_returns 
+       drop constraint FKo0dpi7g348h1boy75cfec0khg;
+    GO
+
+    alter table identityiq.spt_time_period 
+       drop constraint FKm868jhewgm53i6bl4y59nbefl;
+    GO
+
+    alter table identityiq.spt_time_period 
+       drop constraint FKgrcbpbx476sf3yc5jq81wh0se;
+    GO
+
+    alter table identityiq.spt_uiconfig 
+       drop constraint FK16y8ue1ela4vu4nww3kswhtji;
+    GO
+
+    alter table identityiq.spt_uiconfig 
+       drop constraint FKqj3gj76e5girakxi3nejkch3s;
+    GO
+
+    alter table identityiq.spt_uipreferences 
+       drop constraint FK5rj3vu68py43jjx519hqwnh3t;
+    GO
+
+    alter table identityiq.spt_widget 
+       drop constraint FKi51uo1quso8fdclqgeoj1q5hq;
+    GO
+
+    alter table identityiq.spt_widget 
+       drop constraint FK7tc8b6i3k86o36mru85lyhw3p;
+    GO
+
+    alter table identityiq.spt_workflow 
+       drop constraint FKyvogiw1fu3oegof5fxs2vku8;
+    GO
+
+    alter table identityiq.spt_workflow 
+       drop constraint FK1i4qorrnciecvgdvblwrp125e;
+    GO
+
+    alter table identityiq.spt_workflow_rule_libraries 
+       drop constraint FKc3ft08r09xw4cwx2tqqnevcxp;
+    GO
+
+    alter table identityiq.spt_workflow_rule_libraries 
+       drop constraint FKec9mwyk8lv87b7fknm22ax1by;
+    GO
+
+    alter table identityiq.spt_workflow_case 
+       drop constraint FK3u37v00ff74e4vm5plubtlqx1;
+    GO
+
+    alter table identityiq.spt_workflow_case 
+       drop constraint FKklde6fd36kr42tbcep5f16dj9;
+    GO
+
+    alter table identityiq.spt_workflow_registry 
+       drop constraint FK46n0i40i7596wrm4r19mkf95o;
+    GO
+
+    alter table identityiq.spt_workflow_registry 
+       drop constraint FKg1y46rf6jkacnl8vtiie6wp5i;
+    GO
+
+    alter table identityiq.spt_workflow_target 
+       drop constraint FKnhcve6g96fyukhtjqu5utjf16;
+    GO
+
+    alter table identityiq.spt_workflow_target 
+       drop constraint FKjngjkgjmpbwwn9utpq60r7lid;
+    GO
+
+    alter table identityiq.spt_workflow_target 
+       drop constraint FKj7uvhprilx2f9fb2u5bcoixwj;
+    GO
+
+    alter table identityiq.spt_work_item 
+       drop constraint FK2arasbenw5pc3vrsnwvxqmc1n;
+    GO
+
+    alter table identityiq.spt_work_item 
+       drop constraint FKaqhklr6jna0canhsmjv6q3ttv;
+    GO
+
+    alter table identityiq.spt_work_item 
+       drop constraint FKgkr4i2su940s244kebgc1f4ak;
+    GO
+
+    alter table identityiq.spt_work_item 
+       drop constraint FKb5kty2abf9yebckhbo6vqjv2l;
+    GO
+
+    alter table identityiq.spt_work_item 
+       drop constraint FKnq8ngnioi09kpss4md9jkr4dq;
+    GO
+
+    alter table identityiq.spt_work_item 
+       drop constraint FK77ut3s987e5m9gcoj1yi7ifvo;
+    GO
+
+    alter table identityiq.spt_work_item_comments 
+       drop constraint FKrcoqbshrurwy6exnqljnk9147;
+    GO
+
+    alter table identityiq.spt_work_item_archive 
+       drop constraint FKi7l692hi3ind4q445liu4vnjt;
+    GO
+
+    alter table identityiq.spt_work_item_archive 
+       drop constraint FKr1av5cjgksel3fq0cop2449dm;
+    GO
+
+    alter table identityiq.spt_work_item_config 
+       drop constraint FKsaklnun9f7m1ur66reimsj0uh;
+    GO
+
+    alter table identityiq.spt_work_item_config 
+       drop constraint FKainfds5d2eyh6kt0nudndtjhq;
+    GO
+
+    alter table identityiq.spt_work_item_config 
+       drop constraint FK9fsd71n6x6rgg14g3ipecbei7;
+    GO
+
+    alter table identityiq.spt_work_item_config 
+       drop constraint FKml61l0hu4ipdc0uyusn0u0s4q;
+    GO
+
+    alter table identityiq.spt_work_item_config 
+       drop constraint FKlmrrs1xltdogce59jno83xvqv;
+    GO
+
+    alter table identityiq.spt_work_item_config 
+       drop constraint FK2p700iypxpxmrijecptg3bfc9;
+    GO
+
+    alter table identityiq.spt_work_item_config 
+       drop constraint FKobeui00a317gyix189atb3dt8;
+    GO
+
+    alter table identityiq.spt_work_item_config 
+       drop constraint FK8ya24kn74wr4rmd8ukl7vuv9d;
+    GO
+
+    alter table identityiq.spt_work_item_owners 
+       drop constraint FK4m6v8uagrglqptlephg9ecbm5;
+    GO
+
+    alter table identityiq.spt_work_item_owners 
+       drop constraint FKjpvcxuqhodero8m8cyucavel9;
+    GO
+
+    drop table identityiq.spt_account_group;
+    GO
+
+    drop table identityiq.spt_account_group_inheritance;
+    GO
+
+    drop table identityiq.spt_account_group_perms;
+    GO
+
+    drop table identityiq.spt_account_group_target_perms;
+    GO
+
+    drop table identityiq.spt_activity_constraint;
+    GO
+
+    drop table identityiq.spt_activity_data_source;
+    GO
+
+    drop table identityiq.spt_activity_time_periods;
+    GO
+
+    drop table identityiq.spt_alert;
+    GO
+
+    drop table identityiq.spt_alert_action;
+    GO
+
+    drop table identityiq.spt_alert_definition;
+    GO
+
+    drop table identityiq.spt_app_dependencies;
+    GO
+
+    drop table identityiq.spt_application;
+    GO
+
+    drop table identityiq.spt_application_remediators;
+    GO
+
+    drop table identityiq.spt_application_activity;
+    GO
+
+    drop table identityiq.spt_application_schema;
+    GO
+
+    drop table identityiq.spt_application_scorecard;
+    GO
+
+    drop table identityiq.spt_app_secondary_owners;
+    GO
+
+    drop table identityiq.spt_arch_cert_item_apps;
+    GO
+
+    drop table identityiq.spt_attachment;
+    GO
+
+    drop table identityiq.spt_audit_config;
+    GO
+
+    drop table identityiq.spt_audit_event;
+    GO
+
+    drop table identityiq.spt_authentication_answer;
+    GO
+
+    drop table identityiq.spt_authentication_question;
+    GO
+
+    drop table identityiq.spt_batch_request;
+    GO
+
+    drop table identityiq.spt_batch_request_item;
+    GO
+
+    drop table identityiq.spt_bulk_id_join;
+    GO
+
+    drop table identityiq.spt_bundle;
+    GO
+
+    drop table identityiq.spt_bundle_archive;
+    GO
+
+    drop table identityiq.spt_bundle_children;
+    GO
+
+    drop table identityiq.spt_bundle_permits;
+    GO
+
+    drop table identityiq.spt_bundle_profile_relation;
+    GO
+
+    drop table identityiq.spt_bundle_profile_relation_object;
+    GO
+
+    drop table identityiq.spt_bundle_profile_relation_step;
+    GO
+
+    drop table identityiq.spt_bundle_requirements;
+    GO
+
+    drop table identityiq.spt_capability;
+    GO
+
+    drop table identityiq.spt_capability_children;
+    GO
+
+    drop table identityiq.spt_capability_rights;
+    GO
+
+    drop table identityiq.spt_category;
+    GO
+
+    drop table identityiq.spt_cert_action_assoc;
+    GO
+
+    drop table identityiq.spt_certification;
+    GO
+
+    drop table identityiq.spt_certification_def_tags;
+    GO
+
+    drop table identityiq.spt_certification_groups;
+    GO
+
+    drop table identityiq.spt_certification_tags;
+    GO
+
+    drop table identityiq.spt_certification_action;
+    GO
+
+    drop table identityiq.spt_certification_archive;
+    GO
+
+    drop table identityiq.spt_certification_challenge;
+    GO
+
+    drop table identityiq.spt_certification_definition;
+    GO
+
+    drop table identityiq.spt_certification_delegation;
+    GO
+
+    drop table identityiq.spt_certification_entity;
+    GO
+
+    drop table identityiq.spt_certification_group;
+    GO
+
+    drop table identityiq.spt_certification_item;
+    GO
+
+    drop table identityiq.spt_certifiers;
+    GO
+
+    drop table identityiq.spt_cert_item_applications;
+    GO
+
+    drop table identityiq.spt_cert_item_classifications;
+    GO
+
+    drop table identityiq.spt_child_certification_ids;
+    GO
+
+    drop table identityiq.spt_classification;
+    GO
+
+    drop table identityiq.spt_cloud_access3way;
+    GO
+
+    drop table identityiq.spt_cloud_access_group;
+    GO
+
+    drop table identityiq.spt_cloud_access_role;
+    GO
+
+    drop table identityiq.spt_cloud_access_scope;
+    GO
+
+    drop table identityiq.spt_configuration;
+    GO
+
+    drop table identityiq.spt_correlation_config;
+    GO
+
+    drop table identityiq.spt_custom;
+    GO
+
+    drop table identityiq.spt_database_version;
+    GO
+
+    drop table identityiq.spt_deleted_object;
+    GO
+
+    drop table identityiq.spt_dictionary;
+    GO
+
+    drop table identityiq.spt_dictionary_term;
+    GO
+
+    drop table identityiq.spt_dynamic_scope;
+    GO
+
+    drop table identityiq.spt_dynamic_scope_exclusions;
+    GO
+
+    drop table identityiq.spt_dynamic_scope_inclusions;
+    GO
+
+    drop table identityiq.spt_email_template;
+    GO
+
+    drop table identityiq.spt_email_template_properties;
+    GO
+
+    drop table identityiq.spt_entitlement_group;
+    GO
+
+    drop table identityiq.spt_entitlement_snapshot;
+    GO
+
+    drop table identityiq.spt_file_bucket;
+    GO
+
+    drop table identityiq.spt_form;
+    GO
+
+    drop table identityiq.spt_full_text_index;
+    GO
+
+    drop table identityiq.spt_generic_constraint;
+    GO
+
+    drop table identityiq.spt_group_definition;
+    GO
+
+    drop table identityiq.spt_group_factory;
+    GO
+
+    drop table identityiq.spt_group_index;
+    GO
+
+    drop table identityiq.spt_group_permissions;
+    GO
+
+    drop table identityiq.spt_identity;
+    GO
+
+    drop table identityiq.spt_identity_archive;
+    GO
+
+    drop table identityiq.spt_identity_assigned_roles;
+    GO
+
+    drop table identityiq.spt_identity_bundles;
+    GO
+
+    drop table identityiq.spt_identity_capabilities;
+    GO
+
+    drop table identityiq.spt_identity_controlled_scopes;
+    GO
+
+    drop table identityiq.spt_identity_entitlement;
+    GO
+
+    drop table identityiq.spt_identity_external_attr;
+    GO
+
+    drop table identityiq.spt_identity_history_item;
+    GO
+
+    drop table identityiq.spt_identity_request;
+    GO
+
+    drop table identityiq.spt_identity_request_item;
+    GO
+
+    drop table identityiq.spt_identity_role_metadata;
+    GO
+
+    drop table identityiq.spt_identity_snapshot;
+    GO
+
+    drop table identityiq.spt_identity_trigger;
+    GO
+
+    drop table identityiq.spt_identity_workgroups;
+    GO
+
+    drop table identityiq.spt_integration_config;
+    GO
+
+    drop table identityiq.spt_jasper_files;
+    GO
+
+    drop table identityiq.spt_jasper_page_bucket;
+    GO
+
+    drop table identityiq.spt_jasper_result;
+    GO
+
+    drop table identityiq.spt_jasper_template;
+    GO
+
+    drop table identityiq.spt_link;
+    GO
+
+    drop table identityiq.spt_link_external_attr;
+    GO
+
+    drop table identityiq.spt_localized_attribute;
+    GO
+
+    drop table identityiq.spt_managed_attribute;
+    GO
+
+    drop table identityiq.spt_managed_attr_inheritance;
+    GO
+
+    drop table identityiq.spt_managed_attr_perms;
+    GO
+
+    drop table identityiq.spt_managed_attr_target_perms;
+    GO
+
+    drop table identityiq.spt_message_template;
+    GO
+
+    drop table identityiq.spt_mining_config;
+    GO
+
+    drop table identityiq.spt_mitigation_expiration;
+    GO
+
+    drop table identityiq.spt_module;
+    GO
+
+    drop table identityiq.spt_monitoring_statistic;
+    GO
+
+    drop table identityiq.spt_monitoring_statistic_tags;
+    GO
+
+    drop table identityiq.spt_native_identity_change_event;
+    GO
+
+    drop table identityiq.spt_object_classification;
+    GO
+
+    drop table identityiq.spt_object_config;
+    GO
+
+    drop table identityiq.spt_partition_result;
+    GO
+
+    drop table identityiq.spt_password_policy;
+    GO
+
+    drop table identityiq.spt_password_policy_holder;
+    GO
+
+    drop table identityiq.spt_persisted_file;
+    GO
+
+    drop table identityiq.spt_plugin;
+    GO
+
+    drop table identityiq.spt_policy;
+    GO
+
+    drop table identityiq.spt_policy_violation;
+    GO
+
+    drop table identityiq.spt_post_commit_notification_object;
+    GO
+
+    drop table identityiq.spt_process_log;
+    GO
+
+    drop table identityiq.spt_profile;
+    GO
+
+    drop table identityiq.spt_profile_constraints;
+    GO
+
+    drop table identityiq.spt_profile_permissions;
+    GO
+
+    drop table identityiq.spt_provisioning_request;
+    GO
+
+    drop table identityiq.spt_provisioning_transaction;
+    GO
+
+    drop table identityiq.spt_quick_link;
+    GO
+
+    drop table identityiq.spt_quick_link_options;
+    GO
+
+    drop table identityiq.spt_recommender_definition;
+    GO
+
+    drop table identityiq.spt_remediation_item;
+    GO
+
+    drop table identityiq.spt_remote_login_token;
+    GO
+
+    drop table identityiq.spt_request;
+    GO
+
+    drop table identityiq.spt_request_arguments;
+    GO
+
+    drop table identityiq.spt_request_definition;
+    GO
+
+    drop table identityiq.spt_request_definition_rights;
+    GO
+
+    drop table identityiq.spt_request_returns;
+    GO
+
+    drop table identityiq.spt_request_state;
+    GO
+
+    drop table identityiq.spt_resource_event;
+    GO
+
+    drop table identityiq.spt_right_config;
+    GO
+
+    drop table identityiq.spt_role_change_event;
+    GO
+
+    drop table identityiq.spt_role_index;
+    GO
+
+    drop table identityiq.spt_role_metadata;
+    GO
+
+    drop table identityiq.spt_role_mining_result;
+    GO
+
+    drop table identityiq.spt_role_scorecard;
+    GO
+
+    drop table identityiq.spt_rule;
+    GO
+
+    drop table identityiq.spt_rule_registry_callouts;
+    GO
+
+    drop table identityiq.spt_rule_dependencies;
+    GO
+
+    drop table identityiq.spt_rule_registry;
+    GO
+
+    drop table identityiq.spt_rule_signature_arguments;
+    GO
+
+    drop table identityiq.spt_rule_signature_returns;
+    GO
+
+    drop table identityiq.spt_samltoken;
+    GO
+
+    drop table identityiq.spt_schema_attributes;
+    GO
+
+    drop table identityiq.spt_scope;
+    GO
+
+    drop table identityiq.spt_scorecard;
+    GO
+
+    drop table identityiq.spt_score_config;
+    GO
+
+    drop table identityiq.spt_server;
+    GO
+
+    drop table identityiq.spt_server_statistic;
+    GO
+
+    drop table identityiq.spt_service_definition;
+    GO
+
+    drop table identityiq.spt_service_lock;
+    GO
+
+    drop table identityiq.spt_service_status;
+    GO
+
+    drop table identityiq.spt_sign_off_history;
+    GO
+
+    drop table identityiq.spt_snapshot_permissions;
+    GO
+
+    drop table identityiq.spt_sodconstraint;
+    GO
+
+    drop table identityiq.spt_sodconstraint_left;
+    GO
+
+    drop table identityiq.spt_sodconstraint_right;
+    GO
+
+    drop table identityiq.spt_archived_cert_entity;
+    GO
+
+    drop table identityiq.spt_archived_cert_item;
+    GO
+
+    drop table identityiq.spt_identity_req_item_attach;
+    GO
+
+    drop table identityiq.spt_pending_req_attach;
+    GO
+
+    drop table identityiq.spt_right;
+    GO
+
+    drop table identityiq.spt_sync_roles;
+    GO
+
+    drop table identityiq.spt_syslog_event;
+    GO
+
+    drop table identityiq.spt_tag;
+    GO
+
+    drop table identityiq.spt_target;
+    GO
+
+    drop table identityiq.spt_target_association;
+    GO
+
+    drop table identityiq.spt_target_source;
+    GO
+
+    drop table identityiq.spt_target_sources;
+    GO
+
+    drop table identityiq.spt_task_definition;
+    GO
+
+    drop table identityiq.spt_task_definition_rights;
+    GO
+
+    drop table identityiq.spt_task_event;
+    GO
+
+    drop table identityiq.spt_task_result;
+    GO
+
+    drop table identityiq.spt_task_signature_arguments;
+    GO
+
+    drop table identityiq.spt_task_signature_returns;
+    GO
+
+    drop table identityiq.spt_time_period;
+    GO
+
+    drop table identityiq.spt_uiconfig;
+    GO
+
+    drop table identityiq.spt_uipreferences;
+    GO
+
+    drop table identityiq.spt_widget;
+    GO
+
+    drop table identityiq.spt_workflow;
+    GO
+
+    drop table identityiq.spt_workflow_rule_libraries;
+    GO
+
+    drop table identityiq.spt_workflow_case;
+    GO
+
+    drop table identityiq.spt_workflow_registry;
+    GO
+
+    drop table identityiq.spt_workflow_target;
+    GO
+
+    drop table identityiq.spt_workflow_test_suite;
+    GO
+
+    drop table identityiq.spt_work_item;
+    GO
+
+    drop table identityiq.spt_work_item_comments;
+    GO
+
+    drop table identityiq.spt_work_item_archive;
+    GO
+
+    drop table identityiq.spt_work_item_config;
+    GO
+
+    drop table identityiq.spt_work_item_owners;
+    GO
+
+    drop sequence identityiq.spt_identity_request_sequence;
+    GO
+
+    drop sequence identityiq.spt_work_item_sequence;
+    GO
+
+    drop sequence identityiq.spt_syslog_event_sequence;
+    GO
+
+    drop sequence identityiq.spt_prv_trans_sequence;
+    GO
+
+    drop sequence identityiq.spt_alert_sequence;
+    GO
+
+use master
+GO
+
+drop database identityiq
+GO
+sp_droplogin identityiq
+
+use master
+GO
+
+drop database identityiqPlugin
+GO
+sp_droplogin identityiqPlugin

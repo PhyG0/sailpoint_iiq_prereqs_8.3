@@ -1,0 +1,37 @@
+
+-- Note that we do not specify a COLLATE - use default value for each MySQL release,
+-- which causes queries to be case-insensitive.
+CREATE DATABASE IF NOT EXISTS identityiqPlugin CHARACTER SET utf8mb4;
+
+--
+-- MYSQL - Use the following statements to create users for MySql databases.
+-- If installing on Aurora, remove the following statements and run the Aurora specific ones below.
+--  
+-- The 'WITH mysql_native_password' is used here to prevent the need
+-- for complex MySQL configuration.  For production systems, consult 
+-- your DBA for the recommended authentication plugin.
+--  
+CREATE USER IF NOT EXISTS 'identityiqPlugin'@'%' IDENTIFIED WITH mysql_native_password BY 'identityiqPlugin';
+GRANT ALL PRIVILEGES ON identityiqPlugin.* TO 'identityiqPlugin'@'%';
+
+CREATE USER IF NOT EXISTS 'identityiqPlugin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'identityiqPlugin';
+GRANT ALL PRIVILEGES ON identityiqPlugin.* TO 'identityiqPlugin'@'localhost';
+--
+-- End MYSQL
+
+--
+-- AURORA - Use the following statements to create users for Aurora databases.
+-- If installing on MySql, do not run these statements.
+--
+-- nowarning; -- Ignore warnings from 5.7 suggesting use of newer ALTER USER.
+--
+-- GRANT ALL PRIVILEGES ON identityiqPlugin.*
+--     TO 'identityiqPlugin' IDENTIFIED BY 'identityiqPlugin';
+-- GRANT ALL PRIVILEGES ON identityiqPlugin.*
+--     TO 'identityiqPlugin'@'%' IDENTIFIED BY 'identityiqPlugin';
+-- GRANT ALL PRIVILEGES ON identityiqPlugin.*
+--     TO 'identityiqPlugin'@'localhost' IDENTIFIED BY 'identityiqPlugin';
+--
+-- warnings; -- resume warnings
+--
+-- End AURORA

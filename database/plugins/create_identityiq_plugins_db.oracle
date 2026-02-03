@@ -1,0 +1,17 @@
+
+--
+-- The DATAFILE location must be modified to match your environment.
+-- Because of this, these commands are commented out in this script.
+--
+--
+-- CREATE BIGFILE TABLESPACE identityiqPlugin_ts
+-- DATAFILE '/usr/local/oradata/identityiqPlugin.dbf' SIZE 128M
+--    AUTOEXTEND ON NEXT 128M MAXSIZE UNLIMITED
+--    EXTENT MANAGEMENT LOCAL;
+--
+-- CREATE USER identityiqPlugin IDENTIFIED BY identityiqPlugin
+--     DEFAULT TABLESPACE identityiqPlugin_ts
+--     QUOTA UNLIMITED ON identityiqPlugin_ts;
+--
+-- GRANT CREATE SESSION to identityiqPlugin;
+-- GRANT CREATE TABLE to identityiqPlugin;

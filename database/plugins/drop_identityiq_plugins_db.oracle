@@ -1,0 +1,4 @@
+
+-- DROP USER identityiqPlugin CASCADE;
+-- DROP TABLESPACE identityiqPlugin_ts INCLUDING CONTENTS;
+-- HOST rm /usr/local/oradata/identityiqPlugin.dbf
