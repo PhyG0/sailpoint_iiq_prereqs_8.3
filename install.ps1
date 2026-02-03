@@ -66,9 +66,7 @@ Write-Host "  Downloading installation scripts..." -ForegroundColor Cyan
 $ProgressPreference = 'SilentlyContinue'
 
 foreach ($script in $Scripts) {
-    # Add random query param to bypass GitHub Raw cache
-    $cb = Get-Random
-    $url = "$RepoBase/$script?v=$cb"
+    $url = "$RepoBase/$script"
     $dest = "$InstallDir\$script"
     
     try {
