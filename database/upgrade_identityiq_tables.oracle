@@ -1,0 +1,138 @@
+--
+-- This script contains DDL statements to upgrade a database schema to
+-- reflect changes to the model.  This file should only be used to
+-- upgrade from the last formal release version to the current code base.
+--
+
+   create table identityiq.spt_bundle_profile_relation (
+       id varchar2(32 char) not null,
+        created number(19,0),
+        modified number(19,0),
+        bundle_id varchar2(32 char),
+        source_bundle_id varchar2(32 char),
+        source_profile_id varchar2(32 char),
+        source_application varchar2(32 char),
+        type varchar2(255 char),
+        attribute varchar2(322 char),
+        value varchar2(450 char),
+        display_value varchar2(450 char),
+        required number(1,0),
+        permitted number(1,0),
+        or_member number(1,0),
+        inherited number(1,0),
+        attributes clob,
+        app_status varchar2(255 char),
+        hash varchar2(128 char),
+        hash_code number(10,0),
+        primary key (id)
+    );
+
+    alter table identityiq.spt_bundle_profile_relation
+           add constraint FKmagmq7lgmic1artsln48lpcaw
+           foreign key (source_application)
+           references identityiq.spt_application;
+
+    create table identityiq.spt_bundle_profile_relation_step (
+       id varchar2(32 char) not null,
+        created number(19,0),
+        modified number(19,0),
+        bundle_profile_relation_id varchar2(32 char),
+        step_type varchar2(255 char),
+        bundle_id varchar2(32 char),
+        idx number(10,0),
+        primary key (id)
+    );
+
+create index identityiq.FKmagmq7lgmic1artsln48lpcaw on identityiq.spt_bundle_profile_relation (source_application);
+create index identityiq.spt_bpr_bundle_id_hash_code on identityiq.spt_bundle_profile_relation (bundle_id, hash_code);
+create index identityiq.spt_bpr_type on identityiq.spt_bundle_profile_relation (type);
+create index identityiq.spt_bpr_app_status on identityiq.spt_bundle_profile_relation (app_status);
+create index identityiq.spt_bprs_bundle_id on identityiq.spt_bundle_profile_relation_step (bundle_id);
+
+alter table identityiq.spt_bundle_profile_relation_step
+       add constraint FK9ge6smvhp8n0fcl408e86tvia
+       foreign key (bundle_profile_relation_id)
+       references identityiq.spt_bundle_profile_relation;
+
+create index identityiq.FK9ge6smvhp8n0fcl408e86tvia on identityiq.spt_bundle_profile_relation_step (bundle_profile_relation_id);
+
+create index identityiq.spt_bpr_attr_ci on identityiq.spt_bundle_profile_relation (upper(attribute));
+
+create index identityiq.spt_bpr_value_ci on identityiq.spt_bundle_profile_relation (upper(value));
+
+create index identityiq.spt_bpr_display_value_ci on identityiq.spt_bundle_profile_relation (upper(display_value));
+
+--
+-- modifications to the post commit notification object table
+-- this table never should have been used so just redefine it
+--
+drop table identityiq.spt_post_commit_notification_object purge;
+
+create table identityiq.spt_post_commit_notification_object (
+   id varchar2(32 char) not null,
+    class_name varchar2(1024 char) not null,
+    modified_id varchar2(1024 char) not null,
+    type varchar2(255 char) not null,
+    created number(19,0),
+    modified number(19,0),
+    consumer varchar2(256 char),
+    committed_object_string clob,
+    primary key (id)
+);
+
+create table identityiq.spt_bundle_profile_relation_object (
+   id varchar2(32 char) not null,
+    modified_id varchar2(1024 char) not null,
+    type varchar2(255 char) not null,
+    created number(19,0),
+    modified number(19,0),
+    hash_code number(10,0),
+    primary key (id)
+);
+
+create table identityiq.spt_native_identity_change_event (
+   id varchar2(32 char) not null,
+    created number(19,0),
+    modified number(19,0),
+    launched number(19,0),
+    type varchar2(255 char),
+    identity_id varchar2(255 char),
+    link_id varchar2(255 char),
+    managed_attribute_id varchar2(255 char),
+    old_native_identity varchar2(322 char),
+    new_native_identity varchar2(322 char),
+    uuid varchar2(255 char),
+    application_id varchar2(255 char),
+    instance varchar2(128 char),
+    status varchar2(255 char),
+    primary key (id)
+);
+
+create index identityiq.spt_nativeidchange_identity_ci on identityiq.spt_native_identity_change_event (upper(identity_id));
+create index identityiq.spt_nativeidchange_link_ci on identityiq.spt_native_identity_change_event (upper(link_id));
+create index identityiq.spt_nativeidchange_ma_ci on identityiq.spt_native_identity_change_event (upper(managed_attribute_id));
+create index identityiq.spt_nativeidchange_uuid_ci on identityiq.spt_native_identity_change_event (upper(uuid));
+create index identityiq.spt_nativeidchange_oldni_ci on identityiq.spt_native_identity_change_event (upper(old_native_identity));
+
+alter table identityiq.spt_service_definition add iiqlock varchar2(128 char);
+
+
+-- add iiq_elevated_access column to ManagedAttribute
+alter table identityiq.spt_managed_attribute add iiq_elevated_access number(1,0);
+update identityiq.spt_managed_attribute set iiq_elevated_access = 0;
+alter table identityiq.spt_managed_attribute modify iiq_elevated_access not null;
+
+-- add iiq_elevated_access column to Bundle
+alter table identityiq.spt_bundle add iiq_elevated_access number(1,0);
+update identityiq.spt_bundle set iiq_elevated_access = 0;
+alter table identityiq.spt_bundle modify iiq_elevated_access not null;
+
+-- add iiq_elevated access column to CertitificationItem
+alter table identityiq.spt_certification_item add iiq_elevated_access number(1,0);
+
+--
+-- This is necessary to maintain the schema version. DO NOT REMOVE.
+--
+update identityiq.spt_database_version set schema_version = '8.3-21' where name = 'main';
+
+commit;

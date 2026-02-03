@@ -1,0 +1,39 @@
+
+CREATE DATABASE identityiqPlugin
+GO
+
+--create a sql server login with which to connect
+CREATE LOGIN [identityiqPlugin] WITH PASSWORD='identityiqPlugin',
+DEFAULT_DATABASE=identityiqPlugin
+GO
+
+USE identityiqPlugin
+GO
+
+--create a user in our db associated with our server login and our schema
+CREATE USER identityiqPlugin FOR LOGIN identityiqPlugin WITH DEFAULT_SCHEMA =
+identityiqPlugin
+GO
+
+-- create a schema
+CREATE SCHEMA identityiqPlugin AUTHORIZATION identityiqPlugin
+GO
+
+--grant permissions
+grant select,insert,update,delete,create table to identityiqPlugin
+GO
+
+--this makes our default user the db owner, so it can be
+--used to run scripts.
+EXEC sp_addrolemember 'db_owner', 'identityiqPlugin'
+GO
+
+-- Enable automatic snapshot isolation
+
+ALTER DATABASE identityiqPlugin SET ALLOW_SNAPSHOT_ISOLATION ON
+GO
+ALTER DATABASE identityiqPlugin SET READ_COMMITTED_SNAPSHOT ON
+GO
+
+USE identityiq
+GO
