@@ -567,12 +567,17 @@ if ($isNewInstall) {
     }
     
     # Run initialize
+    # Run initialize
     Write-Info "Initializing Database Data Directory..."
     $initProc = Start-Process -FilePath $mysqld -ArgumentList "--initialize-insecure", "--datadir=`"$mysqlDataDir`"", "--console" -PassThru -NoNewWindow
-    Wait-ProcessWithSpinner -Process $initProc -Message "Initializing MySQL"
+    
+    # Wait for completion manually as exit code can be unreliable
+    $initProc.WaitForExit()
     
     if (-not (Test-Path "$mysqlDataDir\mysql")) {
-        Write-Error "Data directory was not initialized properly."
+        Write-Error "Data directory was not initialized properly. Check logs."
+    } else {
+        Write-Host "  [SUCCESS] Database initialized successfully." -ForegroundColor Green
     }
     Write-Host "Database initialized successfully." -ForegroundColor Green
 }
