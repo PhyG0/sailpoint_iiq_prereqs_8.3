@@ -68,7 +68,7 @@ function Request-UserInput {
     param(
         [string]$Message,
         [switch]$IsPassword,
-        [bool]$Mandatory = $true
+        [bool]$Mandatory = $false
     )
 
     Write-Host ""
