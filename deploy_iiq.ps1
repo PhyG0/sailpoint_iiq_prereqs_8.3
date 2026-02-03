@@ -123,9 +123,10 @@ $dbUser = "identityiq"
 Write-Info "Using Database Name: $dbName"
 Write-Info "Using Database User: $dbUser"
 
-$dbPassword = Request-UserInput -Message "Enter Database Password for '$dbUser'" -IsPassword
+$dbPassword = Request-UserInput -Message "Enter Database Password for '$dbUser' (Leave empty for 'root')" -IsPassword -Mandatory $false
 if ([string]::IsNullOrWhiteSpace($dbPassword)) {
-    Write-Error "Database password cannot be empty."
+    $dbPassword = "root"
+    Write-Host "Using default password 'root'" -ForegroundColor Gray
 }
 
 # Helper to find Tomcat Service
@@ -357,7 +358,8 @@ $rootPasswordValid = $false
 
 while (-not $rootPasswordValid -and $attempt -lt $maxAttempts) {
     $attempt++
-    $rootPassword = Request-UserInput -Message "Enter MySQL Root Password (Attempt $attempt/$maxAttempts)" -IsPassword
+    $rootPassword = Request-UserInput -Message "Enter MySQL Root Password (Attempt $attempt/$maxAttempts) [Leave empty for 'root']" -IsPassword -Mandatory $false
+    if ([string]::IsNullOrWhiteSpace($rootPassword)) { $rootPassword = "root" }
     
     # Validate password
     Write-Host "Validating root password..." -ForegroundColor Gray

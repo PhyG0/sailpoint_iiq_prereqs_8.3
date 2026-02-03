@@ -513,17 +513,17 @@ if ($existingData) {
     
     if (-not $runningSvc -or $runningSvc.Status -ne 'Running') {
         Write-Warning "Could not start MySQL service for password validation. Validation will occur later."
-        $password = Request-UserInput -Message "Enter your EXISTING MySQL Root Password" -IsPassword
+        $password = Request-UserInput -Message "Enter your EXISTING MySQL Root Password [Leave empty for 'root']" -IsPassword -Mandatory $false
+        if ([string]::IsNullOrWhiteSpace($password)) { $password = "root" }
         $passwordValid = $true
     } else {
         # Service is running, we can validate
         while (-not $passwordValid -and $attempt -lt $maxAttempts) {
             $attempt++
-            $password = Request-UserInput -Message "Enter your EXISTING MySQL Root Password (Attempt $attempt/$maxAttempts)" -IsPassword
-            if ([string]::IsNullOrWhiteSpace($password)) { 
-                Write-Warning "Password cannot be empty for existing installation."
-                continue
-            }
+            $password = Request-UserInput -Message "Enter your EXISTING MySQL Root Password (Attempt $attempt/$maxAttempts) [Leave empty for 'root']" -IsPassword -Mandatory $false
+            if ([string]::IsNullOrWhiteSpace($password)) { $password = "root" }
+            # Password cannot be empty warning removed since we default to root
+
             
             # Validate password NOW
             Write-Host "  Validating password..." -ForegroundColor Gray
@@ -543,7 +543,7 @@ if ($existingData) {
 
 } else {
     Write-Host "Fresh MySQL installation detected." -ForegroundColor Cyan
-    $password = Request-UserInput -Message "Enter NEW Root Password for MySQL (Leave empty for 'root')"
+    $password = Request-UserInput -Message "Enter NEW Root Password for MySQL (Leave empty for 'root')" -Mandatory $false
     if ([string]::IsNullOrWhiteSpace($password)) { $password = "root" }
     $isNewInstall = $true
 }
