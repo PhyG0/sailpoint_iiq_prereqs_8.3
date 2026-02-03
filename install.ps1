@@ -34,6 +34,17 @@ $RepoBase = "https://raw.githubusercontent.com/PhyG0/sailpoint_iiq_prereqs_8.3/m
 $TimeStamp = Get-Date -Format "yyyyMMdd_HHmmss"
 $InstallDir = "$env:TEMP\SailPointInstaller_$TimeStamp"
 
+$Scripts = @(
+    "UI.ps1",
+    "download_prereqs.ps1",
+    "install_jdk.ps1",
+    "deploy_iiq.ps1",
+    "init_iiq.ps1",
+    "init_lcm.ps1",
+    "iiq_console.ps1",
+    "launcher.ps1"
+)
+
 # Cleanup old installer folders opportunistically (don't fail if locked)
 Get-ChildItem -Path $env:TEMP -Filter "SailPointInstaller_*" -Directory | ForEach-Object {
     try {
