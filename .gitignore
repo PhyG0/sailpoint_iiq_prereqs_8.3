@@ -1,0 +1,11 @@
+# Ignore large binary files
+*.war
+*.exe
+*.msi
+*.zip
+
+# Ignore PDF documentation  
+*.pdf
+
+# Keep PowerShell scripts
+!*.ps1
