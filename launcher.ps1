@@ -274,9 +274,7 @@ if ($missingPrereqs.Count -gt 0) {
     
     if ($downloadChoice -match "^[Yy]") {
         Write-Host "  Starting download script..." -ForegroundColor Cyan
-        Write-Host "  Starting download script..." -ForegroundColor Cyan
-        $proc = Start-Process powershell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$ScriptDir\download_prereqs.ps1`"" -PassThru
-        $proc.WaitForExit()
+        & "$ScriptDir\download_prereqs.ps1"
 
         
         # Refresh check
@@ -347,9 +345,8 @@ Write-Header
 Write-StatusBar -CurrentStep 1 -StepStatus $stepStatus
 Show-Step "Prerequisites Installation"
 
-$proc = Start-Process powershell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$ScriptDir\install_jdk.ps1`"" -PassThru
-$proc.WaitForExit()
-if ($proc.ExitCode -ne 0) {
+& "$ScriptDir\install_jdk.ps1"
+if ($LASTEXITCODE -ne 0) {
     $stepStatus[0] = "failed"
     Write-Host "  Step 1 failed!" -ForegroundColor Red
     Request-Confirmation "Press Enter to exit"
@@ -370,9 +367,8 @@ Write-Header
 Write-StatusBar -CurrentStep 2 -StepStatus $stepStatus
 Show-Step "Deploy IdentityIQ"
 
-$proc = Start-Process powershell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$ScriptDir\deploy_iiq.ps1`" -WarFilePath `"$UserWarPath`"" -PassThru
-$proc.WaitForExit()
-if ($proc.ExitCode -ne 0) {
+& "$ScriptDir\deploy_iiq.ps1" -WarFilePath "$UserWarPath"
+if ($LASTEXITCODE -ne 0) {
     $stepStatus[1] = "failed"
     Write-Host "  Step 2 failed!" -ForegroundColor Red
     Request-Confirmation "Press Enter to exit"
@@ -397,9 +393,8 @@ Write-Header
 Write-StatusBar -CurrentStep 3 -StepStatus $stepStatus
 Show-Step "Import init.xml"
 
-$proc = Start-Process powershell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$ScriptDir\init_iiq.ps1`"" -PassThru
-$proc.WaitForExit()
-if ($proc.ExitCode -ne 0) {
+& "$ScriptDir\init_iiq.ps1"
+if ($LASTEXITCODE -ne 0) {
     $stepStatus[2] = "failed"
     Write-Host "  Step 3 failed!" -ForegroundColor Red
     Request-Confirmation "Press Enter to exit"
@@ -420,9 +415,8 @@ Write-Header
 Write-StatusBar -CurrentStep 4 -StepStatus $stepStatus
 Show-Step "Import init-lcm.xml"
 
-$proc = Start-Process powershell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$ScriptDir\init_lcm.ps1`"" -PassThru
-$proc.WaitForExit()
-if ($proc.ExitCode -ne 0) {
+& "$ScriptDir\init_lcm.ps1"
+if ($LASTEXITCODE -ne 0) {
     $stepStatus[3] = "failed"
     Write-Host "  Step 4 failed!" -ForegroundColor Red
     Request-Confirmation "Press Enter to exit"

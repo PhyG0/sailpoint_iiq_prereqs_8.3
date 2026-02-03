@@ -106,6 +106,8 @@ Start-Sleep -Seconds 2
 # LAUNCH MAIN INSTALLER
 # ============================================================================
 Set-Location $InstallDir
-# Use Start-Process with ExecutionPolicy Bypass to handle restricted systems
-$process = Start-Process powershell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$InstallDir\launcher.ps1`"" -PassThru
-$process.WaitForExit()
+# Use Start-Process with ExecutionPolicy Bypass to handle restricted systems, but keep in same window
+$process = Start-Process powershell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$InstallDir\launcher.ps1`"" -PassThru -NoNewWindow -Wait
+if ($process.ExitCode -ne 0) {
+    Write-Host "Installation failed with code $($process.ExitCode)" -ForegroundColor Red
+}
