@@ -372,7 +372,7 @@ if (-not $tomcatInstaller) {
 
 # 9. Install VC++ Redistributable
 Write-Host "`nChecking VC++ Redistributable..." -ForegroundColor Cyan
-$vcInstallerPattern = "VC_redist.x64.exe"
+$vcInstallerPattern = "VC_redist*.exe"
 $vcInstaller = Get-ChildItem -Path $PSScriptRoot -Filter $vcInstallerPattern | Select-Object -First 1
 
 if (-not $vcInstaller) {
