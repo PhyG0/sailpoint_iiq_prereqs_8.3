@@ -59,8 +59,18 @@ Write-Host ""
 # CREATE INSTALL DIRECTORY
 # ============================================================================
 Write-Host "  Creating installation directory..." -ForegroundColor Gray
+
+# If current path is in $InstallDir, move out to prevent locking
+if ($PWD.Path -like "$InstallDir*") {
+    Set-Location $env:TEMP
+}
+
 if (Test-Path $InstallDir) {
-    Remove-Item $InstallDir -Recurse -Force
+    try {
+        Remove-Item $InstallDir -Recurse -Force -ErrorAction Stop
+    } catch {
+        Write-Warning "Could not clean existing directory. Proceeding with overwrite."
+    }
 }
 New-Item -ItemType Directory -Path $InstallDir -Force | Out-Null
 Write-Host "  Location: $InstallDir" -ForegroundColor Green
@@ -81,6 +91,23 @@ foreach ($script in $Scripts) {
         Write-Host "    [OK] $script" -ForegroundColor Green
     } catch {
         Write-Host "    [FAIL] $script - $($_.Exception.Message)" -ForegroundColor Red
+    }
+}
+
+# Download Database Scripts
+Write-Host "  Downloading database scripts..." -ForegroundColor Cyan
+$DBDir = "$InstallDir\database"
+if (-not (Test-Path $DBDir)) { New-Item -ItemType Directory -Path $DBDir -Force | Out-Null }
+
+$DBScripts = @("create_identityiq_tables-8.3.mysql")
+foreach ($dbScript in $DBScripts) {
+    $url = "$RepoBase/database/$dbScript"
+    $dest = "$DBDir\$dbScript"
+    try {
+        Invoke-WebRequest -Uri $url -OutFile $dest -UseBasicParsing
+        Write-Host "    [OK] database/$dbScript" -ForegroundColor Green
+    } catch {
+        Write-Host "    [FAIL] database/$dbScript - $($_.Exception.Message)" -ForegroundColor Red
     }
 }
 
