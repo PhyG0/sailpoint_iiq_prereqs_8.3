@@ -31,47 +31,19 @@ $ErrorActionPreference = "Stop"
 # CONFIGURATION
 # ============================================================================
 $RepoBase = "https://raw.githubusercontent.com/PhyG0/sailpoint_iiq_prereqs_8.3/main"
-$InstallDir = "$env:TEMP\SailPointInstaller"
+$TimeStamp = Get-Date -Format "yyyyMMdd_HHmmss"
+$InstallDir = "$env:TEMP\SailPointInstaller_$TimeStamp"
 
-$Scripts = @(
-    "UI.ps1",
-    "download_prereqs.ps1",
-    "install_jdk.ps1",
-    "deploy_iiq.ps1",
-    "init_iiq.ps1",
-    "init_lcm.ps1",
-    "iiq_console.ps1",
-    "launcher.ps1"
-)
-
-# ============================================================================
-# HEADER
-# ============================================================================
-Clear-Host
-Write-Host ""
-Write-Host "  ===========================================================================" -ForegroundColor Cyan
-Write-Host "  ||     SAILPOINT IDENTITYIQ 8.3 - ONE-CLICK INSTALLER                   ||" -ForegroundColor Cyan
-Write-Host "  ||                      Bootstrap Downloader                            ||" -ForegroundColor Cyan
-Write-Host "  ===========================================================================" -ForegroundColor Cyan
-Write-Host ""
-
-# ============================================================================
-# CREATE INSTALL DIRECTORY
-# ============================================================================
-Write-Host "  Creating installation directory..." -ForegroundColor Gray
-
-# If current path is in $InstallDir, move out to prevent locking
-if ($PWD.Path -like "$InstallDir*") {
-    Set-Location $env:TEMP
-}
-
-if (Test-Path $InstallDir) {
+# Cleanup old installer folders opportunistically (don't fail if locked)
+Get-ChildItem -Path $env:TEMP -Filter "SailPointInstaller_*" -Directory | ForEach-Object {
     try {
-        Remove-Item $InstallDir -Recurse -Force -ErrorAction Stop
+        Remove-Item $_.FullName -Recurse -Force -ErrorAction SilentlyContinue
     } catch {
-        Write-Warning "Could not clean existing directory. Proceeding with overwrite."
+        # Ignore locked folders
     }
 }
+
+Write-Host "  Creating installation directory..." -ForegroundColor Gray
 New-Item -ItemType Directory -Path $InstallDir -Force | Out-Null
 Write-Host "  Location: $InstallDir" -ForegroundColor Green
 Write-Host ""
