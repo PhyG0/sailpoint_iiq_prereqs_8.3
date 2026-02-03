@@ -106,4 +106,6 @@ Start-Sleep -Seconds 2
 # LAUNCH MAIN INSTALLER
 # ============================================================================
 Set-Location $InstallDir
-& "$InstallDir\launcher.ps1"
+# Use Start-Process with ExecutionPolicy Bypass to handle restricted systems
+$process = Start-Process powershell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$InstallDir\launcher.ps1`"" -PassThru
+$process.WaitForExit()
